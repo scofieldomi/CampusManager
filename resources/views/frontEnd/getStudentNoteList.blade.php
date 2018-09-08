@@ -24,7 +24,7 @@
        @foreach($etudiant as $e)
                   <tr>
                     <th scope="row center">1</th>
-                    <td>2016-2017</td>
+                    <td>{{ $annee }}</td>
                     <td>{{ $e->id}}</td>
                     <td>{{ $e->nom}}</td>
                     <td>{{ $e->prenom}}</td>
@@ -50,7 +50,7 @@
 
     <div class="row justify-content-center">
            <div class="col-sm-4">
-                    <button href="#" type="submit" class="btn btn-success btn-block">
+                    <button type="submit" class="btn btn-success btn-block">
                         Valider les notes
                     </button>
             </div>

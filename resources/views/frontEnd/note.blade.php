@@ -31,10 +31,9 @@ CampusManager
 
     <div class="row justify-content-center">
 
-  
                <div class="col-sm-4">
                 <label for="nom">Année Académique</label>
-                  <select name="annee" class="form-control">                  
+                  <select name="annee" class="form-control" id="annee">                  
                      @foreach($annee as $a)
                     <option value="{{$a->intitule}}">"{{$a->intitule}}"</option>
                      @endforeach
@@ -149,17 +148,17 @@ $(document).on('click','.pagination a', function(e){
  e.preventDefault() ;
 var page = $(this).attr('href').split('page=')[1] ;
 
-getStudent(page,$('#mod').val()) ;
+getStudent(page,$('#mod').val(), $('#annee').val()) ;
 })
 
-function getStudent(page, mod){
+function getStudent(page, mod, annee){
 
 var url = "{{ route('note.getStudentPagination') }}" ;
 
    $.ajax({
       type : 'get',
       url :  url+'?page='+page,
-      data : {'mod': mod}
+      data : {'mod': mod , 'annee':annee}
    }).done(function(data){
  
     $('.resultat').html(data) ;

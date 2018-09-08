@@ -32,9 +32,9 @@ class noteController extends Controller
       $session = Session::All();
       $module = Module::All();
 
-      $etudiant = array() ;
+      // $etudiant = array() ;
 
-      return view('frontEnd.note', compact('annee','cycle','filiere','semestre','session','module','etudiant')) ;
+      return view('frontEnd.note', compact('annee','cycle','filiere','semestre','session','module')) ;
 
     }
 
@@ -42,6 +42,8 @@ class noteController extends Controller
   public function rechercheEtudiant(Request $request){
 
     if($request->ajax()){
+
+         $annee = $request->annee ;
 
          $module_r = Module::where('intitule', '=', $request->mod)->first() ;
          $module_id = $module_r->id ;
@@ -51,7 +53,7 @@ class noteController extends Controller
 
         if(count($etudiant) > 0){
 
-            $view = view('frontEnd.getStudentNoteList', compact('etudiant'))->render() ;
+            $view = view('frontEnd.getStudentNoteList', compact('etudiant','annee'))->render() ;
             return response($view) ;
         }
 
@@ -62,12 +64,14 @@ class noteController extends Controller
 
      if($request->ajax()){
 
+         $annee = $request->annee ;
+
          $module_r = Module::where('intitule', '=', $request->mod)->first() ;
          $module_id = $module_r->id ;
         
          $etudiant = $this->data($module_id) ;
 
-         return view('frontEnd.getStudentNoteList', compact('etudiant'))->render() ;
+         return view('frontEnd.getStudentNoteList', compact('etudiant','annee'))->render() ;
   }
 }
  
