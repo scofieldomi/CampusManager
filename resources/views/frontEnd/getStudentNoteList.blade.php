@@ -34,10 +34,16 @@
                 @endforeach
         </tbody>
 
+<!--         <tfoot>
+            <tr>
+              <td colspan="10"> {{ $etudiant->render() }}</td>
+            </tr>
+          
+        </tfoot> -->
+
 </table>
             {{  $etudiant->links() }}
 
-           
         </div>
 
      </div>

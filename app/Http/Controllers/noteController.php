@@ -58,37 +58,23 @@ class noteController extends Controller
     }
  }
 
+ public function getStudentPagination(Request $request){
 
+     if($request->ajax()){
+
+         $module_r = Module::where('intitule', '=', $request->mod)->first() ;
+         $module_id = $module_r->id ;
+        
+         $etudiant = $this->data($module_id) ;
+
+         return view('frontEnd.getStudentNoteList', compact('etudiant'))->render() ;
+  }
+}
+ 
   public function data($mode)
     {
         
-      //     $annee = Annee::OrderBy('annees.intitule','desc')->get() ;
-      //     $cycle = Cycle::All();
-      //     $filiere = Filiere::All();
-      //     $semestre = Semestre::All();
-      //     $session = Session::All();
-      //     $module = Module::All();
-
-
-      //   $annee_r = Annee::where('intitule', '=',$request->annee)->first() ;
-      //   $annee_id = $annee_r->id ;
-
-      //   $cycle_r = Cycle::where('intitule', '=' ,$request->cycle)->first();
-      //   //$cycle = $cycle->fresh(); 
-      //   $cycle_id = $cycle_r->id ;
-      //   $cycle_value = $cycle_r->intitule ;
-
-      //   $filiere_r = Filiere::where('intitule', '=',$request->filiere)->first() ;
-      //   $filiere_id = $filiere_r->id ;
-
-      // //   $semestre = Semestre::where('intitule', '=', $request->semestre)->first() ;
-      // // //  $semestre = $semestre->fresh();
-      // //   $semestre_id = $semestre->id ;
-
-      //    $module_r = Module::where('intitule', '=', $request->mod)->first() ;
-      //    $module_id = $module_r->id ;
-      //   //$module_id = 1 ;
-
+ 
          return $etudiant= Inscription::join('etudiants', 'inscriptions.etudiant_matricule', '=' ,'etudiants.matricule')
                         ->join('unites','inscriptions.unite_id','=','unites.id')
                         ->join('cycles','unites.cycle_id','=','cycles.id')

@@ -164,13 +164,6 @@ Route::get('/note/index', [
     'as'   => 'note.index'
 ]);
 
-Route::get('/note/index2', [
-
-    'uses' => 'noteController@index',
-
-    'as'   => 'note.index2'
-]);
-
 
 Route::get('/note/store', [
 
@@ -186,5 +179,10 @@ Route::get('/note/rechercheEtudiant', [
     'as'   => 'note.rechercheEtudiant'
 ]);
 
+Route::get('/note/getStudentPagination', [
 
+    'uses' => 'noteController@getStudentPagination',
+
+    'as'   => 'note.getStudentPagination'
+]);
 

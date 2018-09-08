@@ -85,7 +85,7 @@ CampusManager
 
               <div class="col-sm-4">
                 <label for="nom">Module</label>
-                  <select name="mod" class="form-control">
+                  <select name="mod" class="form-control" id="mod">
                     <option value="+47">Choisir...</option>
                      @foreach($module as $m)
                     <option value="{{$m->intitule}}">"{{$m->intitule}}"</option>
@@ -142,6 +142,31 @@ CampusManager
 
    })
  })
+
+
+$(document).on('click','.pagination a', function(e){
+
+ e.preventDefault() ;
+var page = $(this).attr('href').split('page=')[1] ;
+
+getStudent(page,$('#mod').val()) ;
+})
+
+function getStudent(page, mod){
+
+var url = "{{ route('note.getStudentPagination') }}" ;
+
+   $.ajax({
+      type : 'get',
+      url :  url+'?page='+page,
+      data : {'mod': mod}
+   }).done(function(data){
+ 
+    $('.resultat').html(data) ;
+
+   })
+
+}
 
 
 </script>
