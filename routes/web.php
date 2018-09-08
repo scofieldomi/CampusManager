@@ -164,14 +164,22 @@ Route::get('/note/index', [
     'as'   => 'note.index'
 ]);
 
-Route::post('/note/store', [
+Route::get('/note/index2', [
+
+    'uses' => 'noteController@index',
+
+    'as'   => 'note.index2'
+]);
+
+
+Route::get('/note/store', [
 
     'uses' => 'noteController@liste',
 
     'as'   => 'note.liste'
 ]);
 
-Route::post('/note/rechercheEtudiant', [
+Route::get('/note/rechercheEtudiant', [
 
     'uses' => 'noteController@rechercheEtudiant',
 

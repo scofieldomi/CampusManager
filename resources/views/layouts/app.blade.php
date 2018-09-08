@@ -115,7 +115,7 @@
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();" class="btn btn-success">
-                                   <span>Deconnexion</span>
+                                   <i class="glyphicon glyphicon-search"></i> <span>Deconnexion</span>
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

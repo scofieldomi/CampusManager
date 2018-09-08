@@ -20,7 +20,8 @@ CampusManager
       </div>
   
         <hr class="mb-4">
-    <form class="needs-validation" method="POST" action="{{ route('note.rechercheEtudiant') }}">
+    <form class="needs-validation" method="get" action="{{ url('/note/rechercheEtudiant') }}" id="saisieNote">
+                            
                             {!! csrf_field() !!}
 
  <div class="card">
@@ -108,63 +109,42 @@ CampusManager
 
  <hr class="mb-2">
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+
+<div class="resultat">
+  
+
+</div>
 
 
-<form class="needs-validation" method="POST" action="#">
-
-                            {!! csrf_field() !!}
-
-          <table class="table">
-        <thead class="thead-light">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col" >Année Académique</th>
-                <th scope="col" >Matricule</th>
-                <th scope="col" >Nom</th>
-                <th scope="col" >Prenom</th> 
-                <th scope="col" >Note</th> 
-
-              </tr>
-        </thead>
-
-        <tbody>
-@if($etudiant != null)
-       @foreach($etudiant as $e)
-                  <tr>
-                    <th scope="row center">1</th>
-                    <td>{{ $annee_r->intitule}}</td>
-                    <td>{{ $e->id}}</td>
-                    <td>{{ $e->nom}}</td>
-                    <td>{{ $e->prenom}}</td>
-                    <td><input name="{{ $e->matricule}}" type="text" class="form-control" id="" placeholder="" value="" ></td>
-
-                  </tr>
-                @endforeach
-        </tbody>
-</table>
-            {{  $etudiant->links() }}
-
-           
-@endif
-        </div>
-
-     </div>
-
-    <div class="row justify-content-center">
-           <div class="col-sm-4">
-                    <button href="#" type="submit" class="btn btn-success btn-block">
-                        Valider les notes
-                    </button>
-            </div>
-    </div>
-     
-</form>
-        
-    </div>
   </div>
 </div>
+
+
+@endsection
+
+@section('scripts')
+
+<script type="text/javascript">
+
+ $('#saisieNote').on('submit', function(e){
+  e.preventDefault() ;
+  var url = $(this).attr('action') ;
+  var data = $(this).serializeArray() ;
+  var get = $(this).attr('method') ;
+   $.ajax({
+      type : get,
+      url :  url,
+      data : data
+ 
+   }).done(function(data){
+    console.log(data);
+    $('.resultat').html(data) ;
+
+   })
+ })
+
+
+</script>
 
 
 @endsection
