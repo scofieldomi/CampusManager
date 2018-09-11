@@ -8,3 +8,11 @@
         line-height: 60px;
         background-color: #fff;
     }
+
+
+.nav {
+
+	position: fixed;
+	background-color: green;
+
+}

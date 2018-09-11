@@ -4,7 +4,6 @@
 CampusManager
 @endsection
 
-
 @section('content')
 <div class="container">
 
@@ -169,6 +168,5 @@ var url = "{{ route('note.getStudentPagination') }}" ;
 
 
 </script>
-
 
 @endsection

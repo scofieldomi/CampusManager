@@ -165,11 +165,11 @@ Route::get('/note/index', [
 ]);
 
 
-Route::get('/note/store', [
+Route::post('/note/store', [
 
-    'uses' => 'noteController@liste',
+    'uses' => 'noteController@store',
 
-    'as'   => 'note.liste'
+    'as'   => 'note.store'
 ]);
 
 Route::get('/note/rechercheEtudiant', [
@@ -186,3 +186,9 @@ Route::get('/note/getStudentPagination', [
     'as'   => 'note.getStudentPagination'
 ]);
 
+Route::get('/notification/{type}/{message}', [
+
+    'uses' => 'sweetController@myNotification',
+
+    'as'   => 'sweet.notification'
+]);

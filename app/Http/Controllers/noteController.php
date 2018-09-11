@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input ;
 
 use App\Cycle;
 use App\Filiere;
@@ -14,6 +15,7 @@ use App\Unite;
 use App\Etudiant;
 use App\Session;
 use App\Module;
+use App\MoyenneModule;
 
 class noteController extends Controller
 {
@@ -111,9 +113,14 @@ class noteController extends Controller
     public function store(Request $request)
     {
         //
+   $notes = Input::All();
 
+   // $s = new Session ;
+   // $annee = new Annee ;
+   // $module = new Module ;
+   // $etudiant = new Etudiant ;
 
-
+       return view('frontEnd.test', compact('notes')) ;
 
     }
 

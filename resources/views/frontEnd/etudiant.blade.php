@@ -14,7 +14,12 @@ CampusManager
                 </div>
                 <br>
                 <p class="lead">
-              Ajouter les étudiants inscrits dans votre université 
+                Ajouter les étudiants inscrits dans votre université 
+
+                @include('layouts.style')
+                @include('layouts.scripts')
+                @include('sweet::alert')
+                
                 </p>
       </div>
     <hr class="mb-3">

@@ -31,6 +31,13 @@
     </div>
 </header>
 
+<div class = "span12">
+ <img src="{{asset('img/Logo.gif')}}" alt=""
+                             class="circle responsive-img valign profile-image-login">
+<!--width : 1175px-->
+
+</div>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <!--   <a class="navbar-brand" href="#">Campus Manager</a> -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,8 +72,15 @@
       </li>
 
 
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('note.index') }}">Saisie des notes</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Gestion des notes
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{{ route('note.index') }}">Saisie des notes</a>
+          <a class="dropdown-item" href="#">Etat des notes</a>
+         
+        </div>
       </li>
 
        <li class="nav-item dropdown" >
@@ -143,11 +157,12 @@
             @yield('content')
         </main>
 
-
     </div>
 
       <!--   @include('layouts.footer') -->
+      
         @include('layouts.scripts')
+        @include('sweet::alert')
         @yield('scripts')
 
 </body>

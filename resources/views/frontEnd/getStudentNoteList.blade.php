@@ -2,7 +2,7 @@
         <div class="col-md-8">
 
 
-<form class="needs-validation" method="POST" action="#">
+<form class="needs-validation" method="POST" action="{{ route('note.store') }}">
 
                             {!! csrf_field() !!}
 
@@ -23,36 +23,30 @@
 
        @foreach($etudiant as $e)
                   <tr>
+
                     <th scope="row center">1</th>
                     <td>{{ $annee }}</td>
-                    <td>{{ $e->id}}</td>
+                    <td>{{$e->matricule}}</td>
                     <td>{{ $e->nom}}</td>
                     <td>{{ $e->prenom}}</td>
-                    <td><input name="{{ $e->matricule}}" type="text" class="form-control" id="" placeholder="" value="" ></td>
+                    <td><input type="text" name="note[]" value=""  class="form-control" id="" placeholder="" ></td>
 
                   </tr>
                 @endforeach
         </tbody>
 
-<!--         <tfoot>
-            <tr>
-              <td colspan="10"> {{ $etudiant->render() }}</td>
-            </tr>
-          
-        </tfoot> -->
-
 </table>
             {{  $etudiant->links() }}
-
+<button type="submit" class="btn btn-success btn-block">
+                        Valider les notes
+                    </button>
         </div>
 
      </div>
 
     <div class="row justify-content-center">
            <div class="col-sm-4">
-                    <button type="submit" class="btn btn-success btn-block">
-                        Valider les notes
-                    </button>
+                    
             </div>
     </div>
      

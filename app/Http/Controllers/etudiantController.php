@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use Alert;
+
 use App\Cycle;
 use App\Filiere;
 use App\Semestre;
@@ -66,7 +69,6 @@ class etudiantController extends Controller
         $semestre2 = Semestre::where('intitule', '=',$request->semestre2)->first() ;
         $semestre2_id = $semestre2->id ;
 
-
          etudiant::create([
 
                 'matricule' =>$request->matricule,
@@ -93,12 +95,13 @@ class etudiantController extends Controller
         $i->etudiant_matricule = $request->matricule ;
         $i->unite_id = $u->id ;
         $i->annee_id = $annee_id;
-
         $i->save() ;
 
          }
 
-         return redirect()->back() ;
+         Alert::success('L\'etudiant '.$request->nom.' '.$request->prenom.' matricule '.$request->matricule.' à été bien enregistré dans la filière '.$request->filiere,'Confirmation')->autoclose(4000);
+
+         return redirect()->route('etudiant.index')->withOk("L'Etudiant ".$request->nom." ".$request->prenom.", matricule ".$request->matricule.", à bien été enregistré dans la filière ".$request->filiere.". Merci");;
     }
 
 
