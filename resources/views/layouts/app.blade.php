@@ -160,7 +160,6 @@
     </div>
 
       <!--   @include('layouts.footer') -->
-      
         @include('layouts.scripts')
         @include('sweet::alert')
         @yield('scripts')

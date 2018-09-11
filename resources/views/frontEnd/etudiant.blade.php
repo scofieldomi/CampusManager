@@ -15,11 +15,10 @@ CampusManager
                 <br>
                 <p class="lead">
                 Ajouter les étudiants inscrits dans votre université 
-
-                @include('layouts.style')
-                @include('layouts.scripts')
-                @include('sweet::alert')
                 
+               @if(session()->has('ok'))
+               <div class="alert alert-warning alert-dismissible " >{!! session('ok') !!}</div>
+                @endif
                 </p>
       </div>
     <hr class="mb-3">

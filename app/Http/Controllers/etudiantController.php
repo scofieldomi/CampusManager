@@ -101,7 +101,7 @@ class etudiantController extends Controller
 
          Alert::success('L\'etudiant '.$request->nom.' '.$request->prenom.' matricule '.$request->matricule.' à été bien enregistré dans la filière '.$request->filiere,'Confirmation')->autoclose(4000);
 
-         return redirect()->route('etudiant.index')->withOk("L'Etudiant ".$request->nom." ".$request->prenom.", matricule ".$request->matricule.", à bien été enregistré dans la filière ".$request->filiere.". Merci");;
+         return redirect()->route('etudiant.index')->withOk("L'Etudiant ".$request->nom." ".$request->prenom.", matricule ".$request->matricule.", à bien été enregistré dans la filière ".$request->filiere.". Merci");
     }
 
 

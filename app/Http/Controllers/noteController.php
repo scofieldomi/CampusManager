@@ -80,7 +80,6 @@ class noteController extends Controller
   public function data($mode)
     {
         
- 
          return $etudiant= Inscription::join('etudiants', 'inscriptions.etudiant_matricule', '=' ,'etudiants.matricule')
                         ->join('unites','inscriptions.unite_id','=','unites.id')
                         ->join('cycles','unites.cycle_id','=','cycles.id')
@@ -91,7 +90,7 @@ class noteController extends Controller
                         ->select('etudiants.matricule','etudiants.nom','etudiants.prenom','modules.id as mid')
                         ->groupBy('etudiants.matricule','etudiants.nom','etudiants.prenom','unites.code','modules.id')
                         ->having('modules.id', '=', $mode)
-                        ->paginate(2) ; 
+                        ->paginate(5) ; 
 
     }
     /**
@@ -113,14 +112,18 @@ class noteController extends Controller
     public function store(Request $request)
     {
         //
-   $notes = Input::All();
 
-   // $s = new Session ;
-   // $annee = new Annee ;
-   // $module = new Module ;
-   // $etudiant = new Etudiant ;
+   $notes = $request->input('note') ;
 
-       return view('frontEnd.test', compact('notes')) ;
+   foreach ($notes as $key => $value) {
+       
+        $annee = new Annee ;
+        $annee->intitule = $value;
+        $annee->save() ;
+
+   }
+
+       return redirect()->back() ;
 
     }
 
