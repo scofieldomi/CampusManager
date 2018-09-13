@@ -24,6 +24,7 @@ class noteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         //
@@ -46,6 +47,9 @@ class noteController extends Controller
     if($request->ajax()){
 
          $annee = $request->annee ;
+
+        $annee_r = Annee::where('intitule', '=',$request->annee)->first() ;
+        $annee_id = $annee_r->id ;
 
          $module_r = Module::where('intitule', '=', $request->mod)->first() ;
          $module_id = $module_r->id ;
@@ -112,7 +116,6 @@ class noteController extends Controller
     public function store(Request $request)
     {
         //
-
    $notes = $request->input('note') ;
 
    foreach ($notes as $key => $value) {

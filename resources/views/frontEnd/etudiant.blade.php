@@ -27,7 +27,7 @@ CampusManager
         <div class="col-md-6">
 
                 <div class="card">
-                    <div class="card-header">Etudiant</div>
+                    <div class="card-header">Ajouter un étudiant</div>
 
                          <div class="card-body">
 

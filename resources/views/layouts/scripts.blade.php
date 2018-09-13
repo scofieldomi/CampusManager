@@ -5,5 +5,11 @@
     <script type="text/javascript" src="{{ asset('js/jquery-1.11.2.min.js') }}"></script>
     
     <!-- Sweet Alert -->
-    <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+     <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+     <script type="text/javascript" src="{{ asset('js/sweetalert.min.js') }}"></script>
+
+ <!--     Jquery dataTables -->
+     <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.js') }}"></script>
+     <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+     <script type="text/javascript" src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+

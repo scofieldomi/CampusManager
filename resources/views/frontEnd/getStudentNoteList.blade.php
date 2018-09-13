@@ -1,7 +1,6 @@
   <div class="row justify-content-center">
         <div class="col-md-8">
 
-
 <form class="needs-validation" method="POST" action="{{ route('note.store') }}">
 
                             {!! csrf_field() !!}
@@ -21,7 +20,7 @@
 
         <tbody>
 
-       @foreach($etudiant as $e)
+               @foreach($etudiant as $e)
                   <tr>
 
                     <th scope="row center">1</th>

@@ -9,4 +9,10 @@
 
     <!-- Sweet Alert -->
 <!-- 	<link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css"> -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" /> -->
+    <link href="{{ asset('css/sweetalert.min.css') }}" rel="stylesheet">
+
+      <!-- Jquery dataTables -->
+
+   <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+   <link href="{{ asset('css/app.dataTables.bootstrap4.min.css') }}" rel="stylesheet">

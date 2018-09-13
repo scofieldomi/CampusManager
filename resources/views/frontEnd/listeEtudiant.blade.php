@@ -86,9 +86,9 @@ CampusManager
  <hr class="mb-2">
 
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
 
-          <table class="table">
+          <table class="table" id="students" class="table table-striped table-bordered" style="width:100%">
         <thead class="thead-light">
               <tr>
                 <th scope="col">#</th>
@@ -133,7 +133,7 @@ CampusManager
                 @endforeach
         </tbody>
 </table>
-            {{  $etudiant->links() }}
+            
 
         </div>
 
@@ -142,6 +142,20 @@ CampusManager
     </div>
   </div>
 </div>
+
+
+@endsection
+
+@section('scripts')
+
+<script type="text/javascript">
+  
+$(document).ready(function() {
+    $('#students').DataTable();
+} );
+
+
+</script>
 
 
 @endsection

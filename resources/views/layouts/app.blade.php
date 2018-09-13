@@ -14,7 +14,6 @@
     @include('layouts.style')
     @yield('style')
 
-
 </head>
 <body>
 

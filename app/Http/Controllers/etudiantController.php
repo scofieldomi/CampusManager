@@ -99,7 +99,7 @@ class etudiantController extends Controller
 
          }
 
-         Alert::success('L\'etudiant '.$request->nom.' '.$request->prenom.' matricule '.$request->matricule.' à été bien enregistré dans la filière '.$request->filiere,'Confirmation')->autoclose(4000);
+         Alert::success('Etudiant bien enregistré. Merci','Confirmation')->autoclose(4000);
 
          return redirect()->route('etudiant.index')->withOk("L'Etudiant ".$request->nom." ".$request->prenom.", matricule ".$request->matricule.", à bien été enregistré dans la filière ".$request->filiere.". Merci");
     }
@@ -116,9 +116,9 @@ class etudiantController extends Controller
                         ->join('semestres','unites.semestre_id','=','semestres.id')
                         ->join('annees','annees.id','=','inscriptions.annee_id')
                         ->select('etudiants.matricule','etudiants.nom','etudiants.prenom','cycles.intitule as c','filieres.intitule as f', 'annees.intitule as a')
-                        ->groupBy('etudiants.matricule','etudiants.nom','etudiants.prenom','cycles.intitule','filieres.intitule','annees.intitule')
-                        ->paginate(5) ; 
-
+                        ->groupBy('etudiants.matricule','etudiants.nom','etudiants.prenom','cycles.intitule','filieres.intitule','annees.intitule') 
+                        ->get(); 
+                        
      return view('frontEnd.listeEtudiant',compact('etudiant')) ;
 
     }
