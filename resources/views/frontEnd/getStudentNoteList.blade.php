@@ -1,3 +1,5 @@
+    @include('layouts.style')
+  
   <div class="row justify-content-center">
         <div class="col-md-8">
 
@@ -5,7 +7,7 @@
 
                             {!! csrf_field() !!}
 
-        <table class="table">
+        <table class="table" id="students" class="table table-striped table-bordered" style="width:100%">
         <thead class="thead-light">
               <tr>
                 <th scope="col">#</th>
@@ -35,7 +37,7 @@
         </tbody>
 
 </table>
-            {{  $etudiant->links() }}
+           
 <button type="submit" class="btn btn-success btn-block">
                         Valider les notes
                     </button>
@@ -52,3 +54,16 @@
 </form>
         
     </div>
+
+
+
+
+ <script type="text/javascript">
+      
+    $(document).ready(function() {
+        $('#students').DataTable();
+    } );  
+
+
+    </script>
+

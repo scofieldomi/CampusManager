@@ -142,29 +142,29 @@ CampusManager
  })
 
 
-$(document).on('click','.pagination a', function(e){
+// $(document).on('click','.pagination a', function(e){
 
- e.preventDefault() ;
-var page = $(this).attr('href').split('page=')[1] ;
+//  e.preventDefault() ;
+// var page = $(this).attr('href').split('page=')[1] ;
 
-getStudent(page,$('#mod').val(), $('#annee').val()) ;
-})
+// getStudent(page,$('#mod').val(), $('#annee').val()) ;
+// })
 
-function getStudent(page, mod, annee){
+// function getStudent(page, mod, annee){
 
-var url = "{{ route('note.getStudentPagination') }}" ;
+// var url = "{{ route('note.getStudentPagination') }}" ;
 
-   $.ajax({
-      type : 'get',
-      url :  url+'?page='+page,
-      data : {'mod': mod , 'annee':annee}
-   }).done(function(data){
+//    $.ajax({
+//       type : 'get',
+//       url :  url+'?page='+page,
+//       data : {'mod': mod , 'annee':annee}
+//    }).done(function(data){
  
-    $('.resultat').html(data) ;
+//     $('.resultat').html(data) ;
 
-   })
+//    })
 
-}
+// }
 
 
 </script>

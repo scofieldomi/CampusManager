@@ -94,7 +94,7 @@ class noteController extends Controller
                         ->select('etudiants.matricule','etudiants.nom','etudiants.prenom','modules.id as mid')
                         ->groupBy('etudiants.matricule','etudiants.nom','etudiants.prenom','unites.code','modules.id')
                         ->having('modules.id', '=', $mode)
-                        ->paginate(5) ; 
+                        ->get() ; 
 
     }
     /**

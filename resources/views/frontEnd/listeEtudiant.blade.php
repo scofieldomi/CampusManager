@@ -86,7 +86,7 @@ CampusManager
  <hr class="mb-2">
 
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-8">
 
           <table class="table" id="students" class="table table-striped table-bordered" style="width:100%">
         <thead class="thead-light">
@@ -96,7 +96,7 @@ CampusManager
                 <th scope="col" >Matricule</th>
                 <th scope="col" >Nom</th>
                 <th scope="col" >Prenom</th>  
-                <th scope="col" >Cylcle</th> 
+                <th scope="col" >Cycle</th> 
                 <th scope="col" >Filiere</th>
                 <th scope="col" >Détails</th>
                 <th scope="col" >Modifier</th>
