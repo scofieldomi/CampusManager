@@ -58,6 +58,7 @@ class deliberationController extends Controller
     {
         //
        $moyenne = 0.0 ;
+       $lesMoyennes = array();
 
         $annee = Annee::where('intitule', '=',$request->annee)->first() ;
         $annee_id = $annee->id ;
@@ -112,13 +113,27 @@ class deliberationController extends Controller
 
                      }
 
-            $an = new Annee ;
-            $an->intitule = $moyenne ;
-            $an->save() ;
 
+           $lesMoyennes[$e->matricule] = $moyenne ;
             //Passage à l'etudiant suivant
 
             $moyenne = 0.0 ;
+
+
+
+     }
+
+     arsort($lesMoyennes, SORT_NATURAL) ;
+
+     foreach ($lesMoyennes as $matricul => $moyenn) {
+
+            $an = new Annee ;
+            $an->intitule = $matricul;
+            $an->save() ;
+
+            $an = new Annee ;
+            $an->intitule = $moyenn ;
+            $an->save() ;
 
      }
 
