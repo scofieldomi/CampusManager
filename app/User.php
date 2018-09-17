@@ -27,13 +27,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-   public function enseignant(){
+   public function enseignants(){
 
     return $this->hasMany('\App\Enseignant');
 
     }
 
-    public function etudiant(){
+    public function etudiants(){
 
       return $this->hasMany('\App\Etudiant');
 

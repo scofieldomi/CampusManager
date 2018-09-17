@@ -17,6 +17,7 @@ use App\Etudiant;
 use App\Session;
 use App\Module;
 use App\MoyenneModule;
+use App\Resultat;
 
 class deliberationController extends Controller
 {
@@ -59,6 +60,9 @@ class deliberationController extends Controller
         //
        $moyenne = 0.0 ;
        $lesMoyennes = array();
+       $rang = 1 ;
+       $mention = "" ;
+       $decision = "" ;
 
         $annee = Annee::where('intitule', '=',$request->annee)->first() ;
         $annee_id = $annee->id ;
@@ -119,21 +123,74 @@ class deliberationController extends Controller
 
             $moyenne = 0.0 ;
 
-
-
      }
+// Trie du tableau de façon decroissante en fonction de la moyenne
 
      arsort($lesMoyennes, SORT_NATURAL) ;
 
      foreach ($lesMoyennes as $matricul => $moyenn) {
 
-            $an = new Annee ;
-            $an->intitule = $matricul;
-            $an->save() ;
+//Recherche de la mention
 
-            $an = new Annee ;
-            $an->intitule = $moyenn ;
-            $an->save() ;
+          switch ($moyenn) {
+
+             case ( $moyenn < 10) :
+                  $mention = "Insuffisant" ;
+                  break;
+
+              case ( $moyenn >= 10 && $moyenn < 12) :
+                  $mention = "Passable" ;
+                  break;
+
+              case ($moyenn >= 12 && $moyenn < 14) :
+                  $mention = "Assez Bien" ;
+                  break;
+
+              case ( $moyenn >= 14 && $moyenn < 16) :
+                  $mention = "Bien" ;
+                  break;
+
+              case ( $moyenn >= 16 ) :
+                  $mention = "Très Bien" ;
+                  break;
+
+              
+              default:
+                  # code...
+                  break;
+          }
+// Rechcherche de la decision
+          switch ($moyenn) {
+
+              case ( $moyenn < 10) :
+                  $decision = "Ajournée" ;
+                  break;
+
+              case ($moyenn >= 10) :
+                  $decision = "Validée" ;
+                  break;
+              
+              default:
+                  # code...
+                  break;
+          }
+
+
+           $resultat = new Resultat ;
+           $resultat->moyenne = $moyenn ;
+           $resultat->rang = $rang ;
+           $resultat->decision = $decision ;
+           $resultat->mention = $mention ;
+           $resultat->annee_id = $annee_id ;
+           $resultat->etudiant_matricule = $matricul ;
+           $resultat->cycle_id = $cycle_id ;
+           $resultat->filiere_id = $filiere_id ;
+           $resultat->semestre_id = $semestre_id ;
+           $resultat->session_id = $session_id ;
+
+           $resultat->save() ;
+
+           $rang++ ;
 
      }
 

@@ -9,12 +9,12 @@ class Cours extends Model
     //
     protected $fillable = [ 'id', 'module_id','enseignant_id','annee_id'];
 
-       public function annee() 
+       public function annees() 
      {
          return $this->belongsTo('App\Annee');
      }
 
-      public function enseignant()
+      public function enseignants()
      {
        return $this->belongsToMany('App\Enseignant');
      }

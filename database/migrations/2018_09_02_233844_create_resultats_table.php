@@ -20,11 +20,18 @@ class CreateResultatsTable extends Migration
             $table->string('decision');
             $table->string('mention');
             $table->string('etudiant_matricule');
+            $table->integer('annee_id')->unsigned();
             $table->integer('cycle_id')->unsigned();
             $table->integer('filiere_id')->unsigned();
             $table->integer('semestre_id')->unsigned();
             $table->integer('session_id')->unsigned();
 
+   
+            $table->foreign('annee_id')
+                      ->references('id')
+                      ->on('annees')
+                      ->onDelete('restrict')
+                      ->onUpdate('restrict');
 
             $table->foreign('etudiant_matricule')
                   ->references('matricule')

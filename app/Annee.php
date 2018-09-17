@@ -9,12 +9,12 @@ class Annee extends Model
     //
     protected $fillable = [ 'id','intitule'];
 
-    public function moyenne_module() {
+    public function moyenne_modules() {
 
      return $this->hasMany('App\MoyenneModule');
  }
 
-     public function inscription() {
+     public function inscriptions() {
 
      return $this->hasMany('App\Inscription');
    }
@@ -23,5 +23,10 @@ class Annee extends Model
 
      return $this->hasMany('App\Cours');
     }
+
+     public function resultats() {
+
+     return $this->hasMany('App\Resultat');
+   }
 
 }

@@ -14,9 +14,9 @@ class Cycle extends Model
      return $this->hasMany('App\Resultat');
    }
 
-    public function u_vs() {
+    public function unites() {
 
-     return $this->hasMany('App\UV');
+     return $this->hasMany('App\Unite');
    }
 
 

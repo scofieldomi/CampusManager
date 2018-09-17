@@ -16,7 +16,7 @@ protected $fillable = ['id','unite_id','intitule','coef'];
    }
 
 
-       public function unite() {
+   public function unites() {
 
      return $this->hasMany('App\Unite');
    }
@@ -26,7 +26,7 @@ protected $fillable = ['id','unite_id','intitule','coef'];
      return $this->hasMany('App\Note');
    }
 
-      public function enseignant()
+      public function enseignants()
      {
        return $this->belongsToMany('App\Enseignant');
      }

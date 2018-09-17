@@ -9,12 +9,12 @@ class Session extends Model
     //
     protected $fillable = ['id','intitule'];
 
-     public function resultat() {
+     public function resultats() {
 
      return $this->hasMany('App\Resultat');
     }
 
-     public function moyenne_module() {
+     public function moyenne_modules() {
 
      return $this->hasMany('App\MoyenneModule');
    }

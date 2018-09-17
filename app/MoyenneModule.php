@@ -9,14 +9,19 @@ class MoyenneModule extends Model
     //
   protected $fillable = ['id','session_id','annee_id','etudiant_matricule','module_id','moyenne'];
 
-     public function etudiant() 
+     public function etudiants() 
      {
          return $this->belongsTo('App\Etudiant');
      }
 
-   public function module() 
+   public function modules() 
      {
          return $this->belongsTo('App\Module');
+     }
+
+      public function annees() 
+     {
+         return $this->belongsTo('App\Annee');
      }
 
 }

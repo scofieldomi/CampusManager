@@ -11,34 +11,34 @@ class Unite extends Model
        'id','cycle_id', 'filiere_id','semestre_id','code','intitule'
     ];
 
-   public function cycle() 
+   public function cycles() 
      {
          return $this->belongsTo('App\Cycle');
      }
 
-     public function filiere() 
+     public function filieres() 
      {
          return $this->belongsTo('App\Filiere');
      }
 
-      public function semestre() 
+      public function semestres() 
      {
          return $this->belongsTo('App\Semestre');
      }
 
-     public function module(){
+     public function modules(){
 
      return $this->hasMany('\App\Module');
 
     }
 
-     public function inscription(){
+     public function inscriptions(){
 
      return $this->hasMany('\App\Inscription');
 
     }
 
-       public function etudiant()
+       public function etudiants()
      {
        return $this->belongsToMany('App\Etudiant');
      }

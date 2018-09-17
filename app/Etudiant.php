@@ -9,9 +9,9 @@ class Etudiant extends Model
     //
      protected $fillable = ['user_id','matricule','nom','prenom','dateNaissance','lieuNaissance','telephone'];
 
-       public function u_vs()
+       public function unites()
      {
-       return $this->belongsToMany('App\UV');
+       return $this->belongsToMany('App\Unite');
      }
 
      public function module_modules() {

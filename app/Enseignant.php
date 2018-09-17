@@ -10,13 +10,13 @@ class Enseignant extends Model
     protected $fillable = [ 'id','user_id','nom','prenom','telephone','email'];
 
 
-       public function user() 
+       public function users() 
      {
          return $this->belongsTo('App\User');
      }
 
 
-   public function module()
+   public function modules()
      {
        return $this->belongsToMany('App\Module');
     }
