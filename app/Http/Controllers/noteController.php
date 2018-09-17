@@ -47,8 +47,12 @@ class noteController extends Controller
     if($request->ajax()){
 
          $annee = $request->annee ;
+         $session = $request->session ;
 
-        $annee_r = Annee::where('intitule', '=',$request->annee)->first() ;
+         $session_r =Session::where('intitule', '=',$session)->first() ;
+         $session_id = $session_r->id ;
+
+        $annee_r = Annee::where('intitule', '=',$annee)->first() ;
         $annee_id = $annee_r->id ;
 
          $module_r = Module::where('intitule', '=', $request->mod)->first() ;
@@ -59,7 +63,10 @@ class noteController extends Controller
 
         if(count($etudiant) > 0){
 
-            $view = view('frontEnd.getStudentNoteList', compact('etudiant','annee'))->render() ;
+          $compte = $etudiant->count() ;
+          $i = 1 ;
+
+            $view = view('frontEnd.getStudentNoteList', compact('etudiant','annee','i','compte','session_id','annee_id','module_id'))->render() ;
             return response($view) ;
         }
 
@@ -77,7 +84,9 @@ class noteController extends Controller
         
          $etudiant = $this->data($module_id) ;
 
-         return view('frontEnd.getStudentNoteList', compact('etudiant','annee'))->render() ;
+        
+
+         return view('frontEnd.getStudentNoteList', compact('etudiant','annee','i','compte'))->render() ;
   }
 }
  
@@ -102,6 +111,7 @@ class noteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -113,18 +123,35 @@ class noteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         //
    $notes = $request->input('note') ;
+   $matricule = $request->input('matricule') ;
+   $sessionId = $request->input('session') ;
+   $anneeId = $request->input('annee') ;
+   $moduleId = $request->input('module') ;
 
-   foreach ($notes as $key => $value) {
-       
-        $annee = new Annee ;
-        $annee->intitule = $value;
-        $annee->save() ;
+   for($i=0 ; $i < sizeof($notes) ; $i++){
 
-   }
+   if($notes[$i] != null){
+
+      $moyenneModule = new MoyenneModule ;
+
+      $moyenneModule->session_id = $sessionId;
+      $moyenneModule->annee_id = $anneeId;
+      $moyenneModule->etudiant_matricule = $matricule[$i];
+      $moyenneModule->module_id = $moduleId;
+      $moyenneModule->moyenne = doubleval($notes[$i]);
+
+      $moyenneModule->save() ;
+
+    }
+
+}
+
+
 
        return redirect()->back() ;
 

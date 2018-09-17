@@ -12,4 +12,7 @@
      <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.js') }}"></script>
      <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
      <script type="text/javascript" src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+     <script type="text/javascript" src="{{ asset('js/dataTables.colVis.js') }}"></script>
+     <script type="text/javascript" src="{{ asset('js/dataTables.tableTools.js') }}"></script>
+
 

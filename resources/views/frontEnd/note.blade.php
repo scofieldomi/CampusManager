@@ -41,7 +41,7 @@ CampusManager
 
                  <div class="col-sm-4">
                 <label for="nom">Session</label>
-                  <select name="session" class="form-control">
+                  <select name="session" class="form-control" id="session">
                      @foreach($session as $s)
                     <option value="{{$s->intitule}}">"{{$s->intitule}}"</option>
                      @endforeach
@@ -50,7 +50,7 @@ CampusManager
 
                  <div class="col-sm-4">
                 <label for="nom">Cycle</label>
-                  <select name="cycle" class="form-control">
+                  <select name="cycle" class="form-control" id="cycle">
                     <option value="+47">Choisir...</option>
                     @foreach($cycle as $c)
                     <option value="{{$c->intitule}}">{{$c->intitule}}</option>
@@ -63,7 +63,7 @@ CampusManager
 
                <div class="col-sm-4">
                 <label for="nom">Filière</label>
-                  <select name="filiere" class="form-control">
+                  <select name="filiere" class="form-control" id="filiere">
                     <option value="">Choisir...</option>
                     @foreach($filiere as $f)
                     <option value="{{$f->intitule}}">"{{$f->intitule}}"</option>
@@ -73,7 +73,7 @@ CampusManager
 
                <div class="col-sm-4">
                 <label for="nom">Semestre</label>
-                  <select name="semestre" class="form-control">
+                  <select name="semestre" class="form-control" id="semestre">
                     <option value="+47">Choisir...</option>
                      @foreach($semestre as $s)
                     <option value="{{$s->intitule}}">"{{$s->intitule}}"</option>

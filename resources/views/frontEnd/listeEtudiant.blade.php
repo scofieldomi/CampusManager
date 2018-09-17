@@ -4,8 +4,10 @@
 CampusManager
 @endsection
 
+
 @section('content')
 <div class="container">
+
 
       <div class=" text-center">
                 <img class="d-block mx-auto mb-4" src="#" alt="" width="72" height="72">
@@ -15,7 +17,6 @@ CampusManager
                 <br>
                 <p class="lead">
               Voir la liste des étudiants enregistrés
-
                 </p>
       </div>
         <hr class="mb-4">
@@ -83,31 +84,31 @@ CampusManager
 </div>
 </div>
 
- <hr class="mb-2">
-
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-          <table class="table" id="students" class="table table-striped table-bordered" style="width:100%">
+    <!-- <div style="text-align:center; color:#909090; font-size:8pt;"> Faire un double-clic pour afficher la liste des demandeurs</div> -->
+@if($compte != 0)
+      <table id="students" class="table table-striped table-bordered table-hover" style="width:100%">
         <thead class="thead-light">
               <tr>
-                <th scope="col">#</th>
-                <th scope="col" >Année Académique</th>
-                <th scope="col" >Matricule</th>
-                <th scope="col" >Nom</th>
-                <th scope="col" >Prenom</th>  
-                <th scope="col" >Cycle</th> 
-                <th scope="col" >Filiere</th>
-                <th scope="col" >Détails</th>
-                <th scope="col" >Modifier</th>
-                <th scope="col" >Supprimer</th>
+                <th>#</th>
+                <th>Année Académique </th>
+                <th>Matricule</th>
+                <th>Nom</th>
+                <th>Prenom</th>  
+                <th>Cycle</th> 
+                <th>Filiere</th>
+                <th >Détails</th>
+                <th >Modifier</th>
+                <th>Supprimer</th>
               </tr>
         </thead>
 
         <tbody>
               @foreach($etudiant as $e)
                   <tr>
-                    <th scope="row center">1</th>
+                    <th scope="row center">{{ $i++ }}</th>
                     <td>{{ $e->a}}</td>
                     <td>{{ $e->matricule}}</td>
                     <td>{{ $e->nom}}</td>
@@ -132,8 +133,16 @@ CampusManager
                   </tr>
                 @endforeach
         </tbody>
+
 </table>
-            
+              @else
+
+                    <div class="alert alert-warning" role="alert" id="centre">
+                      Vous n'avez pas encore d'enregistrement
+                    </div>
+
+     
+                @endif
 
         </div>
 
@@ -151,7 +160,38 @@ CampusManager
 <script type="text/javascript">
   
 $(document).ready(function() {
-    $('#students').DataTable();
+    $('#students').DataTable(
+    {
+      "bJQueryUI": true,
+        "sPaginationType": "full_numbers",
+      "oLanguage": { 
+"sProcessing":   "Traitement en cours...",
+
+     "sLengthMenu":   "Afficher _MENU_",
+     "sInfoEmpty": "0 &eacute;tudiant &agrave; afficher",
+     "sZeroRecords":  "Aucun &eacute;tudiant &agrave; afficher",
+     "sLengthMenu":   "Afficher _MENU_",
+     "sInfo": "_START_ &agrave; _END_ sur _TOTAL_",
+     "sSearch":       "Rechercher : ",
+      "sInfoFiltered": "",
+      "sInfoPostFix":  "",
+      "sUrl":          "",
+
+"oPaginate": {
+                "sFirst":    "|<",
+                "sPrevious": "Précédent",
+                "sNext":     "Suivant",
+                "sLast":     ">|"
+            }
+
+
+           },
+
+
+    },
+
+
+      );
 } );
 
 

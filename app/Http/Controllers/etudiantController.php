@@ -118,8 +118,11 @@ class etudiantController extends Controller
                         ->select('etudiants.matricule','etudiants.nom','etudiants.prenom','cycles.intitule as c','filieres.intitule as f', 'annees.intitule as a')
                         ->groupBy('etudiants.matricule','etudiants.nom','etudiants.prenom','cycles.intitule','filieres.intitule','annees.intitule') 
                         ->get(); 
+
+      $compte = $etudiant->count() ;
+      $i = 1 ;
                         
-     return view('frontEnd.listeEtudiant',compact('etudiant')) ;
+     return view('frontEnd.listeEtudiant',compact('etudiant','i', 'compte')) ;
 
     }
 

@@ -95,22 +95,22 @@ CampusManager
                                 <div class="col-md-8 mb-3">
                                 
                                   <label for="matricule">Matricule</label> 
-                                  <input name="matricule" type="text" class="form-control" id="" placeholder="" value="" >
+                                  <input name="matricule" type="text" class="form-control" id="" placeholder="" value="" autocomplete="on">
                                    
                                   <label for="nom">Nom</label> 
-                                  <input name="nom" type="text" class="form-control" id="" placeholder="" value="" >
+                                  <input name="nom" type="text" class="form-control" id="" placeholder="" value="" autocomplete="on">
                                   
                                    <label for="prenom">Prenom</label> 
-                                  <input name="prenom" type="text" class="form-control" id="" placeholder="" value="" >
+                                  <input name="prenom" type="text" class="form-control" id="" placeholder="" value="" autocomplete="on">
                                    
                                    <label for="datenaissance">Date de Naissance</label> 
-                                  <input name="datenaissance" type="date" class="form-control" id="" placeholder="" value="" >
+                                  <input name="datenaissance" type="date" class="form-control" id="" placeholder="" value="" autocomplete="on">
                                  
                                    <label for="lieunaissance">Lieu de naissance</label> 
-                                  <input name="lieunaissance" type="text" class="form-control" id="" placeholder="" value="" >
+                                  <input name="lieunaissance" type="text" class="form-control" id="" placeholder="" value="" autocomplete="on">
                                   
                                    <label for="telephone">Telephone</label> 
-                                  <input name="telephone" type="text" class="form-control" id="" placeholder="" value="" >
+                                  <input name="telephone" type="text" class="form-control" id="" placeholder="" value="" autocomplete="on">
                                   
                                 </div> 
         </div>
