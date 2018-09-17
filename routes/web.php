@@ -192,3 +192,18 @@ Route::get('/notification/{type}/{message}', [
 
     'as'   => 'sweet.notification'
 ]);
+
+Route::get('/deliberation/index', [
+
+    'uses' => 'deliberationController@index',
+
+    'as'   => 'deliberation.index'
+]);
+
+
+Route::post('/deliberation/store', [
+
+    'uses' => 'deliberationController@store',
+
+    'as'   => 'deliberation.store'
+]);

@@ -88,7 +88,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-       <a class="dropdown-item" href="#">Effectuer une déliberation</a>
+       <a class="dropdown-item" href="{{ route('deliberation.index') }}">Effectuer une déliberation</a>
        <a class="dropdown-item" href="#">Procès verbal</a>
        
         </div>
