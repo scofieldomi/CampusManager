@@ -99,7 +99,7 @@ class etudiantController extends Controller
 
          }
 
-         Alert::success('Etudiant bien enregistré. Merci','Confirmation')->autoclose(4000);
+         Alert::success('Etudiant bien enregistré. Merci','Confirmation')->autoclose(3500);
 
          return redirect()->route('etudiant.index')->withOk("L'Etudiant ".$request->nom." ".$request->prenom.", matricule ".$request->matricule.", à bien été enregistré dans la filière ".$request->filiere.". Merci");
     }
@@ -121,7 +121,7 @@ class etudiantController extends Controller
 
       $compte = $etudiant->count() ;
       $i = 1 ;
-                        
+      
      return view('frontEnd.listeEtudiant',compact('etudiant','i', 'compte')) ;
 
     }

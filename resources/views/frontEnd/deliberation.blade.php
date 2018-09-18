@@ -19,7 +19,7 @@ CampusManager
       </div>
   
         <hr class="mb-4">
-    <form class="needs-validation" method="post" action="{{ route('deliberation.store') }}" id="saisieNote">
+    <form class="needs-validation" method="get" action="{{ url('/deliberation/rechercheResultat') }}"  id="resultatDeliberation">
                             
                             {!! csrf_field() !!}
 
@@ -116,5 +116,28 @@ CampusManager
 @endsection
 
 @section('scripts')
+
+<script type="text/javascript">
+
+ $('#resultatDeliberation').on('submit', function(e){
+  e.preventDefault() ;
+  var url = $(this).attr('action') ;
+  var data = $(this).serializeArray() ;
+  var get = $(this).attr('method') ;
+   $.ajax({
+      type : get,
+      url :  url,
+      data : data
+ 
+   }).done(function(data){
+    console.log(data);
+    $('.resultat').html(data) ;
+
+   })
+ })
+
+
+</script>
+
 
 @endsection

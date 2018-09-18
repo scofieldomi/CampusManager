@@ -207,3 +207,10 @@ Route::post('/deliberation/store', [
 
     'as'   => 'deliberation.store'
 ]);
+
+Route::get('/deliberation/rechercheResultat', [
+
+    'uses' => 'deliberationController@rechercheResultat',
+
+    'as'   => 'deliberation.rechercheResultat'
+]);

@@ -49,20 +49,10 @@ class deliberationController extends Controller
         //
     }
 
-    /** Calcul de la moyenne
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-       $moyenne = 0.0 ;
-       $lesMoyennes = array();
-       $rang = 1 ;
-       $mention = "" ;
-       $decision = "" ;
+
+  public function rechercheResultat(Request $request){
+
+    if($request->ajax()){
 
         $annee = Annee::where('intitule', '=',$request->annee)->first() ;
         $annee_id = $annee->id ;
@@ -78,6 +68,39 @@ class deliberationController extends Controller
 
         $session = Session::where('intitule', '=',$request->session)->first() ;
         $session_id = $session->id ;
+
+        $resultats = $this->data($annee_id, $cycle_id, $filiere_id, $semestre_id, $session_id) ;
+
+        if(count($resultats) > 0){
+
+          $compte = $resultats->count() ;
+          $i = 1 ;
+
+            $view = view('frontEnd.getStudentResultat',compact('resultats'))->render() ;
+
+            return response($view) ;
+        }
+
+    }
+ }
+
+
+
+    /** Calcul de la moyenne
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function data($annee_id, $cycle_id, $filiere_id, $semestre_id, $session_id)
+    {
+        //
+       $moyenne = 0.0 ;
+       $lesMoyennes = array();
+       $rang = 1 ;
+       $mention = "" ;
+       $decision = "" ;
+
 
         $divisePar = Unite::join('modules', 'modules.unite_id', '=' , 'unites.id')
                         ->where('unites.cycle_id', '=', $cycle_id)
@@ -113,7 +136,7 @@ class deliberationController extends Controller
             foreach($moyenneModule as $m){  
 
             $coeff = Module::where('id','=',$m->module_id)->first() ;                   
-            $moyenne += (($m->moyenne)*($coeff->coef))/($divisePar->somme) ;
+            $moyenne += (($m->moyenne)*($coeff->coef))/($divisePar->somme) ; //Calul de la moyenne
 
                      }
 
@@ -124,6 +147,7 @@ class deliberationController extends Controller
             $moyenne = 0.0 ;
 
      }
+
 // Trie du tableau de façon decroissante en fonction de la moyenne
 
      arsort($lesMoyennes, SORT_NATURAL) ;
@@ -153,13 +177,12 @@ class deliberationController extends Controller
               case ( $moyenn >= 16 ) :
                   $mention = "Très Bien" ;
                   break;
-
               
               default:
                   # code...
                   break;
           }
-// Rechcherche de la decision
+// Recherche de la decision du jury
           switch ($moyenn) {
 
               case ( $moyenn < 10) :
@@ -194,8 +217,16 @@ class deliberationController extends Controller
 
      }
 
-        return view('frontEnd.test', compact('etudiants','divisePar')) ;
-    }
+
+     $resultats = Resultat::where('annee_id','=',$annee_id)
+                        ->where('cycle_id', '=', $cycle_id)
+                        ->where('filiere_id', '=', $filiere_id)
+                        ->where('semestre_id', '=', $semestre_id)
+                        ->where('session_id', '=', $session_id)
+                        ->get() ;
+
+        return $resultats ;
+}
 
     /**
      * Display the specified resource.

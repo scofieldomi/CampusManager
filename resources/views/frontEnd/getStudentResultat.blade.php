@@ -11,32 +11,28 @@
         <thead class="thead-light">
               <tr>
 
-                <th>#</th>
+                <th>Rang</th>
                 <th>Année Académique</th>
                 <th>Matricule</th>
                 <th>Nom</th>
                 <th>Prenom</th> 
-                <th>Note</th> 
+                <th>Moyenne</th> 
            
               </tr>
         </thead>
 
         <tbody>
 
-               @foreach($resultats as $r)
+               @foreach($resultats->unique('etudiant_matricule') as $r)
                   <tr>
 
-                    <th scope="row center">1</th>
-                    <td>{{ $r->annee_id }}</td>
-                    <td>{{ $r->matricule }}</td>
-                    <td>{{ $e->nom }} </td>
-                    <td>{{ $e->prenom}}</td>
-                    <td><input type="text" name="note[]" value=""  class="form-control mb-1 mr-sm-1" id="" placeholder="" ></td>
-                    <input type="hidden" name="session" value="{{ $session_id }}">
-                    <input type="hidden" name="annee" value="{{ $annee_id }}">
-                    <input type="hidden" name="module" value="{{ $module_id }}">
-                    <input type="hidden" name="matricule[]" value="{{ $e->matricule }}">
-
+                    <th scope="row center">{{ $r->rang }}</th>
+                    <td>{{  $r->annee_id }}</td>
+                    <td>{{ $r->etudiant_matricule }}</td>
+                    <td>{{ $r->rang }}</td>
+                    <td>{{ $r->moyenne }} </td>
+                    <td>{{ $r->mention }}</td>
+                    
                   </tr>
                 @endforeach
         </tbody>
@@ -44,8 +40,8 @@
 </table>
 
   
-<button type="submit" class="btn btn-success btn-block">
-                        Valider les notes
+  <button type="submit" class="btn btn-success btn-block">
+                       Voir PV
                     </button>
 
 
@@ -104,7 +100,5 @@
 
 
 
-
     </script>
-
 
