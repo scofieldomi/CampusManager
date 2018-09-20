@@ -214,3 +214,19 @@ Route::get('/deliberation/rechercheResultat', [
 
     'as'   => 'deliberation.rechercheResultat'
 ]);
+
+
+Route::get('/pdf/getPDF', [
+
+    'uses' => 'pdfController@getPDF',
+
+    'as'   => 'pdf.getpdf'
+]);
+
+
+Route::post('/deliberation/imprimer', [
+
+    'uses' => 'deliberationController@imprimer',
+
+    'as'   => 'deliberation.imprimer'
+]);

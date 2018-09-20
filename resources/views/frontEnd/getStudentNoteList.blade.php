@@ -6,7 +6,7 @@
 <form class="needs-validation" method="POST" action="{{ route('note.store') }}">
 
                             {!! csrf_field() !!}
-
+@if($compte != 0)
         <table id="students" class="table table-striped table-bordered" style="width:100%">
         <thead class="thead-light">
               <tr>
@@ -23,13 +23,13 @@
 
         <tbody>
 
-               @foreach($resultats as $r)
+               @foreach($etudiant as $e)
                   <tr>
 
-                    <th scope="row center">1</th>
-                    <td>{{ $r->annee_id }}</td>
-                    <td>{{ $r->matricule }}</td>
-                    <td>{{ $e->nom }} </td>
+                    <th scope="row center">{{ $i++ }}</th>
+                    <td>{{ $annee }}</td>
+                    <td>{{$e->matricule}}</td>
+                    <td>{{ $e->nom}}</td>
                     <td>{{ $e->prenom}}</td>
                     <td><input type="text" name="note[]" value=""  class="form-control mb-1 mr-sm-1" id="" placeholder="" ></td>
                     <input type="hidden" name="session" value="{{ $session_id }}">
@@ -108,3 +108,11 @@
     </script>
 
 
+              @else
+
+                    <div class="alert alert-warning" role="alert" id="centre">
+                      Vous n'avez pas encore d'enregistrement
+                    </div>
+
+     
+                @endif

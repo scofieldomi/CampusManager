@@ -52,16 +52,16 @@ class noteController extends Controller
          $session_r =Session::where('intitule', '=',$session)->first() ;
          $session_id = $session_r->id ;
 
-        $annee_r = Annee::where('intitule', '=',$annee)->first() ;
-        $annee_id = $annee_r->id ;
+         $annee_r = Annee::where('intitule', '=',$annee)->first() ;
+         $annee_id = $annee_r->id ;
 
          $module_r = Module::where('intitule', '=', $request->mod)->first() ;
          $module_id = $module_r->id ;
         //$module_id = 1 ;
 
-        $etudiant = $this->data($module_id) ;
+         $etudiant = $this->data($module_id) ;
 
-        if(count($etudiant) > 0){
+         if(count($etudiant) > 0){
 
           $compte = $etudiant->count() ;
           $i = 1 ;
@@ -72,6 +72,7 @@ class noteController extends Controller
 
     }
  }
+
 
  public function getStudentPagination(Request $request){
 
@@ -84,7 +85,6 @@ class noteController extends Controller
         
          $etudiant = $this->data($module_id) ;
 
-        
 
          return view('frontEnd.getStudentNoteList', compact('etudiant','annee','i','compte'))->render() ;
   }

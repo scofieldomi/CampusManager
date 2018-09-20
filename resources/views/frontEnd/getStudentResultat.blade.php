@@ -3,7 +3,7 @@
   <div class="row justify-content-center">
         <div class="col-md-8">
 
-<form class="needs-validation" method="POST" action="{{ route('note.store') }}">
+<form class="needs-validation" method="POST" action="{{ route('deliberation.imprimer') }}">
 
                             {!! csrf_field() !!}
 
@@ -12,11 +12,11 @@
               <tr>
 
                 <th>Rang</th>
-                <th>Année Académique</th>
                 <th>Matricule</th>
                 <th>Nom</th>
                 <th>Prenom</th> 
                 <th>Moyenne</th> 
+                <th>Mention</th> 
            
               </tr>
         </thead>
@@ -27,21 +27,26 @@
                   <tr>
 
                     <th scope="row center">{{ $r->rang }}</th>
-                    <td>{{  $r->annee_id }}</td>
                     <td>{{ $r->etudiant_matricule }}</td>
-                    <td>{{ $r->rang }}</td>
+                    <td>{{ $r->nom }}</td>
+                    <td>{{ $r->prenom }}</td>
                     <td>{{ $r->moyenne }} </td>
                     <td>{{ $r->mention }}</td>
-                    
+                    <input type="hidden" name="annee" value="{{ $annee_id }}">
+                    <input type="hidden" name="session" value="{{ $session_id }}">
+                    <input type="hidden" name="cycle" value="{{ $cycle_id }}">
+                    <input type="hidden" name="filiere" value="{{ $filiere_id }}">
+                    <input type="hidden" name="semestre" value="{{ $semestre_id }}">
+                    <input type="hidden" name="matricule" value="{{ $r->etudiant_matricule }}">
                   </tr>
                 @endforeach
         </tbody>
 
 </table>
 
-  
-  <button type="submit" class="btn btn-success btn-block">
-                       Voir PV
+    
+<button type="submit" class="btn btn-success btn-block">
+                        Imprimer
                     </button>
 
 

@@ -19,6 +19,8 @@ use App\Module;
 use App\MoyenneModule;
 use App\Resultat;
 
+use PDF ;
+
 class deliberationController extends Controller
 {
     /**
@@ -76,7 +78,7 @@ class deliberationController extends Controller
           $compte = $resultats->count() ;
           $i = 1 ;
 
-            $view = view('frontEnd.getStudentResultat',compact('resultats'))->render() ;
+            $view = view('frontEnd.getStudentResultat',compact('resultats','annee_id','session_id','cycle_id','filiere_id','semestre_id'))->render() ;
 
             return response($view) ;
         }
@@ -101,7 +103,7 @@ class deliberationController extends Controller
        $mention = "" ;
        $decision = "" ;
 
-
+//recherche de la somme des coefficients d'un CFS 
         $divisePar = Unite::join('modules', 'modules.unite_id', '=' , 'unites.id')
                         ->where('unites.cycle_id', '=', $cycle_id)
                         ->where('unites.filiere_id', '=', $filiere_id)
@@ -140,7 +142,6 @@ class deliberationController extends Controller
 
                      }
 
-
            $lesMoyennes[$e->matricule] = $moyenne ;
             //Passage à l'etudiant suivant
 
@@ -148,7 +149,7 @@ class deliberationController extends Controller
 
      }
 
-// Trie du tableau de façon decroissante en fonction de la moyenne
+// Tri decroissant du tableau en fonction de la moyenne
 
      arsort($lesMoyennes, SORT_NATURAL) ;
 
@@ -217,16 +218,57 @@ class deliberationController extends Controller
 
      }
 
+//Requete dans la table resultat pour envoie du resultat à la requete Ajax
 
-     $resultats = Resultat::where('annee_id','=',$annee_id)
+  return $resultats = Resultat::join('etudiants', 'resultats.etudiant_matricule', '=' ,'etudiants.matricule')
+                        ->where('annee_id','=',$annee_id)
                         ->where('cycle_id', '=', $cycle_id)
                         ->where('filiere_id', '=', $filiere_id)
                         ->where('semestre_id', '=', $semestre_id)
                         ->where('session_id', '=', $session_id)
                         ->get() ;
 
-        return $resultats ;
+       
 }
+
+
+ public function imprimer(Request $request)
+    {
+
+   $annee_id = $request->input('annee') ;
+
+     $a = Annee::where('id', '=',$annee_id)->first() ;
+     $annee = $a->intitule ;
+  
+    $session_id = $request->input('session') ;
+    $se = Session::where('id', '=',$session_id)->first() ;
+    $session = $se->intitule ;
+
+
+    $cycle_id = $request->input('cycle') ;
+    $filiere_id = $request->input('filiere') ;
+
+    $semestre_id = $request->input('semestre') ;
+    $s = Semestre::where('id', '=',$semestre_id)->first() ;
+    $semestre = $s->intitule ;
+
+
+   $resultats = Resultat::join('etudiants', 'resultats.etudiant_matricule', '=' ,'etudiants.matricule')
+                        ->where('annee_id','=',$annee_id)
+                        ->where('cycle_id', '=', $cycle_id)
+                        ->where('filiere_id', '=', $filiere_id)
+                        ->where('semestre_id', '=', $semestre_id)
+                        ->where('session_id', '=', $session_id)
+                        ->OrderBy('rang','asc')
+                        ->get() ;
+              
+
+        $pdf = PDF::loadView('frontEnd.imprimerResultat',['resultats'=>$resultats,'annee'=>$annee,'semestre'=>$semestre,'session'=>$session]) ;
+        // $pdf->setPaper('legal','landscape');
+
+        return $pdf->stream('resultats.pdf') ;
+
+    }
 
     /**
      * Display the specified resource.
