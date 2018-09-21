@@ -84,7 +84,7 @@ CampusManager
 
 </div>
  <div class="row justify-content-center">
-              <div class="col-sm-4">
+              <div class="col-sm-4 py-3">
                 <button type="submit" class="btn btn-success btn-block">
                     Délibérer </button>
                </div>

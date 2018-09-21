@@ -90,7 +90,7 @@
                 <th><div> <span>  Matricule </span> </div></th>
                 <th><div> <span>  Nom </span> </div></th>  
                 <th><div> <span>  Prénom </span> </div></th>
-                <th><div> <span>  Moyenne </span> </div></th>
+             
                 <th><div> <span>  Mention </span> </div></th>
               </tr>
 
@@ -98,15 +98,17 @@
 
         <tbody>
               @foreach($resultats->unique('etudiant_matricule') as $r)
+               @if( $r->moyenne >= 10)
                   <tr>
 
                     <th scope="row center">{{ $r->rang }}</th>
                     <td>{{ $r->etudiant_matricule }}</td>
                     <td>{{ $r->nom }}</td>
                     <td>{{ $r->prenom }}</td>
-                    <td>{{ $r->moyenne }} </td>
+               
                     <td>{{ $r->mention }}</td>
                   </tr>
+                  @endif
                 @endforeach
         </tbody>
 

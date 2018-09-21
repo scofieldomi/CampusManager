@@ -3,7 +3,7 @@
   <div class="row justify-content-center">
         <div class="col-md-8">
 
-<form class="needs-validation" method="POST" action="{{ route('deliberation.imprimer') }}">
+<form target="_blank" class="needs-validation" method="POST" action="{{ route('deliberation.imprimer') }}">
 
                             {!! csrf_field() !!}
 

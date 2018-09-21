@@ -91,7 +91,7 @@ CampusManager
                   </select>
                 </div>
 
-              <div class="col-sm-4">
+              <div class="col-sm-4 py-3">
                 <button type="submit" class="btn btn-success btn-block">
                     Rechercher</button>
                </div>
