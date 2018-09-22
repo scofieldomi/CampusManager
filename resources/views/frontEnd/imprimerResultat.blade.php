@@ -51,7 +51,7 @@
   
         <div class="col-sm-5" id="center">
 
-                  <span>Ministère de l'enseignement Supérieure, <br>de la recherche scientifique et de l'innovation </span>
+                  <span>Ministère de l'Enseignement Supérieure, <br>de la Recherche Scientifique et de l'Innovation </span>
 
                   <hr class="mb-1">
 
@@ -59,7 +59,7 @@
 
                   <hr class="mb-1">
 
-                  <span> Unité de formation et de recherche en science et technique (UFR/ST)</span>
+                  <span> Unité de formation et de recherche en science et technologie (UFR/ST)</span>
 
             
         </div>

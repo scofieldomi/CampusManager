@@ -1,14 +1,8 @@
 
-               @foreach($etudiants as $e)
+               @foreach($divisePar as $e)
 
-				{{ $e->matricule }} <br>
-
-    			{{ $e->nom }} <br>
-
-				{{ $e->prenom }} 
-
-				{{ $divisePar }}
-
+				{{ $e->somme }}
+			
 
 				@endforeach
 

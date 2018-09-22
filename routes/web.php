@@ -224,7 +224,7 @@ Route::get('/pdf/getPDF', [
 ]);
 
 
-Route::post('/deliberation/imprimer', [
+Route::post('/deliberation/impression', [
 
     'uses' => 'deliberationController@imprimer',
 

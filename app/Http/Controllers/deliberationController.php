@@ -97,6 +97,8 @@ class deliberationController extends Controller
     public function data($annee_id, $cycle_id, $filiere_id, $semestre_id, $session_id)
     {
         //
+     
+
        $moyenne = 0.0 ;
        $lesMoyennes = array();
        $rang = 1 ;
@@ -125,6 +127,7 @@ class deliberationController extends Controller
                         ->select('etudiants.matricule','etudiants.nom','etudiants.prenom','modules.id as mid')
                         ->groupBy('etudiants.matricule','etudiants.nom','etudiants.prenom','unites.code','modules.id')
                         ->get() ; 
+
 //Ici on cherche les étudiants inscrit dans ce CFS session et annee
  foreach($etudiants->unique('matricule') as $e){
   //parcour par etudiant
@@ -171,7 +174,7 @@ class deliberationController extends Controller
                   $mention = "Assez Bien" ;
                   break;
 
-              case ( $moyenn >= 14 && $moyenn < 16) :
+              case ($moyenn >= 14 && $moyenn < 16) :
                   $mention = "Bien" ;
                   break;
 
@@ -235,6 +238,9 @@ class deliberationController extends Controller
  public function imprimer(Request $request)
     {
 
+
+
+
    $annee_id = $request->input('annee') ;
 
      $a = Annee::where('id', '=',$annee_id)->first() ;
@@ -252,6 +258,7 @@ class deliberationController extends Controller
     $s = Semestre::where('id', '=',$semestre_id)->first() ;
     $semestre = $s->intitule ;
 
+if($request->action == 'ADMIS'){
 
    $resultats = Resultat::join('etudiants', 'resultats.etudiant_matricule', '=' ,'etudiants.matricule')
                         ->where('annee_id','=',$annee_id)
@@ -268,7 +275,57 @@ class deliberationController extends Controller
 
         return $pdf->stream('resultats.pdf') ;
 
+      } else if($request->action == 'PV')  {
+
+
+         // $etudiants = Inscription::join('etudiants', 'inscriptions.etudiant_matricule', '=' ,'etudiants.matricule')
+         //                ->join('unites','inscriptions.unite_id','=','unites.id')
+         //                ->join('cycles','unites.cycle_id','=','cycles.id')
+         //                ->join('filieres','unites.filiere_id','=','filieres.id')
+         //                ->join('semestres','unites.semestre_id','=','semestres.id')
+         //                ->join('annees','annees.id','=','inscriptions.annee_id')
+         //                ->join('modules','modules.unite_id','=','unites.id')
+         //                ->join('moyenne_modules','modules.id','=','moyenne_modules.module_id')
+         //                ->join('sessions','moyenne_modules.session_id','=','sessions.id')
+         //                ->where('unites.cycle_id', '=', $cycle_id)
+         //                ->where('unites.filiere_id', '=', $filiere_id)
+         //                ->where('unites.semestre_id', '=', $semestre_id)
+         //                ->where('annees.id', '=', $annee_id)
+         //                ->where('sessions.id', '=', $session_id)
+         //                ->select('etudiants.matricule','etudiants.nom','etudiants.prenom','modules.intitule as m','moyenne_modules.moyenne')
+         //                ->groupBy('etudiants.matricule','etudiants.nom','etudiants.prenom','unites.code','modules.intitule','moyenne_modules.moyenne','cycles.id','filieres.id','semestres.id')
+         //                ->having('etudiants.matricule', '=', '00548')
+         //                ->get() ; 
+
+
+
+    $etudiants = Inscription::join('etudiants', 'inscriptions.etudiant_matricule', '=' ,'etudiants.matricule')
+                        ->join('unites','inscriptions.unite_id','=','unites.id')
+                        ->join('cycles','unites.cycle_id','=','cycles.id')
+                        ->join('filieres','unites.filiere_id','=','filieres.id')
+                        ->join('semestres','unites.semestre_id','=','semestres.id')
+                        ->join('annees','annees.id','=','inscriptions.annee_id')
+                        ->join('modules','modules.unite_id','=','unites.id')
+                        ->join('moyenne_modules','modules.id','=','moyenne_modules.module_id')
+                        ->where('cycle_id', '=', $cycle_id)
+                        ->where('filiere_id', '=', $filiere_id)
+                        ->where('semestre_id', '=', $semestre_id)
+                        ->select('etudiants.matricule','etudiants.nom','etudiants.prenom','modules.id as mid','modules.intitule as module','moyenne_modules.moyenne','moyenne_modules.etudiant_matricule as em')
+                        ->groupBy('etudiants.matricule','etudiants.nom','etudiants.prenom','unites.code','modules.id','moyenne_modules.moyenne','modules.intitule','moyenne_modules.etudiant_matricule')
+                        ->havingRaw('etudiants.matricule=moyenne_modules.etudiant_matricule')
+                        ->get() ; 
+
+
+        $pdf = PDF::loadView('frontEnd.imprimerPV',['etudiants'=>$etudiants,'annee'=>$annee,'semestre'=>$semestre,'session'=>$session]) ;
+        $pdf->setPaper('legal','landscape');
+
+        return $pdf->stream('pv.pdf') ;
+
+
+      }
+
     }
+
 
     /**
      * Display the specified resource.

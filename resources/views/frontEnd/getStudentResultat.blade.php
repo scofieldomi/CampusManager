@@ -45,9 +45,24 @@
 </table>
 
     
-<button type="submit" class="btn btn-success btn-block">
-                        Imprimer
-                    </button>
+<div class="row justify-content-center">  
+
+  <div class="col-sm-4">
+
+        <button type="submit" name="action" class="btn btn-success btn-block" value="PV">
+                                Voir le PV
+                            </button>
+  </div>
+
+   <div class="col-sm-4">
+
+        <button type="submit" name="action" class="btn btn-success btn-block" value="ADMIS">
+                                Imprimer
+                            </button>
+  </div>
+
+</div>
+
 
 
         </div>
