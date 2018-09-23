@@ -94,6 +94,12 @@
                   @foreach($etudiants->unique('module') as $e)
                 <th class="rotate" ><div> <span>  {{ $e->module }}</span> </div></th> 
                    @endforeach
+
+                <th class="rotate bordurevide" ><div> <span>  Moyenne </span> </div></th> 
+                <th class="rotate bordurevide" ><div> <span>  Rang </span> </div></th> 
+                <th class="rotate bordurevide" ><div> <span>  Resultat </span> </div></th> 
+                <th class="rotate bordurevide" ><div> <span>  Mention </span> </div></th> 
+
               </tr>
 
         </thead>
@@ -117,6 +123,11 @@
                                            @endif
 
                              @endforeach           
+
+                                     <td>{{ $e1->rm }}</td>
+                                     <td>{{ $e1->rang }}</td>
+                                     <td>{{ $e1->decision }}</td>
+                                     <td>{{ $e1->mention }}</td>
                       
                                   </tr>
 

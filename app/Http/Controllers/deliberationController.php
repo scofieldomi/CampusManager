@@ -307,11 +307,12 @@ if($request->action == 'ADMIS'){
                         ->join('annees','annees.id','=','inscriptions.annee_id')
                         ->join('modules','modules.unite_id','=','unites.id')
                         ->join('moyenne_modules','modules.id','=','moyenne_modules.module_id')
-                        ->where('cycle_id', '=', $cycle_id)
-                        ->where('filiere_id', '=', $filiere_id)
-                        ->where('semestre_id', '=', $semestre_id)
-                        ->select('etudiants.matricule','etudiants.nom','etudiants.prenom','modules.id as mid','modules.intitule as module','moyenne_modules.moyenne','moyenne_modules.etudiant_matricule as em')
-                        ->groupBy('etudiants.matricule','etudiants.nom','etudiants.prenom','unites.code','modules.id','moyenne_modules.moyenne','modules.intitule','moyenne_modules.etudiant_matricule')
+                        ->join('resultats','resultats.etudiant_matricule','=','etudiants.matricule')
+                        ->where('unites.cycle_id', '=', $cycle_id)
+                        ->where('unites.filiere_id', '=', $filiere_id)
+                        ->where('unites.semestre_id', '=', $semestre_id)
+                        ->select('etudiants.matricule','etudiants.nom','etudiants.prenom','modules.id as mid','modules.intitule as module','moyenne_modules.moyenne','moyenne_modules.etudiant_matricule as em','resultats.moyenne as rm','resultats.rang as rang','resultats.decision as decision','resultats.mention as mention')
+                        ->groupBy('etudiants.matricule','etudiants.nom','etudiants.prenom','unites.code','modules.id','moyenne_modules.moyenne','modules.intitule','moyenne_modules.etudiant_matricule','resultats.moyenne','resultats.rang','resultats.decision','resultats.mention')
                         ->havingRaw('etudiants.matricule=moyenne_modules.etudiant_matricule')
                         ->get() ; 
 
