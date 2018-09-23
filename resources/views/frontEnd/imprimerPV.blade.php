@@ -26,7 +26,6 @@
  th.rotate{
 
   height: 200px ;
-  white-space: nowrap;
 
  }
 

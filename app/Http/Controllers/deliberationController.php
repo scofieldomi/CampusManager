@@ -178,8 +178,12 @@ class deliberationController extends Controller
                   $mention = "Bien" ;
                   break;
 
-              case ( $moyenn >= 16 ) :
+              case ( $moyenn >= 16 && $moyenn < 18) :
                   $mention = "Très Bien" ;
+                  break;
+
+              case ( $moyenn >= 18) :
+                  $mention = "Excellent" ;
                   break;
               
               default:
