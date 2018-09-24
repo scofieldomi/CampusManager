@@ -113,6 +113,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{{ route('annee.index') }}">Année Académique</a>
+          <a class="dropdown-item" href="{{ route('institut.index') }}">Gestion des Instituts</a>
+          <a class="dropdown-item" href="{{ route('departement.index') }}">Gestion des Départements</a>
           <a class="dropdown-item" href="{{ route('cycle.index') }}">Gestion des Cycles</a>
           <a class="dropdown-item" href="{{ route('filiere.index') }}">Gestion des Filières</a>
           <a class="dropdown-item" href="{{ route('semestre.index') }}">Gestion des Semestres</a>

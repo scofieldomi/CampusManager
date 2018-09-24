@@ -45,6 +45,7 @@ CampusManager
                 </div>
 
 </div>
+<div class="row">
                                 <div class="col-md-8 mb-3">
                                 
                                   <label for="annee">Module</label> 
@@ -54,7 +55,7 @@ CampusManager
                                   <input name="coef" type="text" class="form-control" id="" placeholder="" value="" >
                                   
                                 </div> 
-
+</div>
                            <div class="col-md-3 order-md-1 col-md-offset-1">
                            
                             <button class="btn btn-success btn-lg btn-block" type="submit">Valider</button>

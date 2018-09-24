@@ -13,6 +13,8 @@ use App\Annee;
 use App\Inscription;
 use App\Unite;
 use App\Etudiant;
+use App\Institut;
+use App\Departement;
 
 class etudiantController extends Controller
 {
@@ -25,11 +27,14 @@ class etudiantController extends Controller
     {
         //
       $annee = Annee::OrderBy('annees.intitule','desc')->get() ;
+      $institut = Institut::All() ;
+      $departement = Departement::All() ;
       $cycle = Cycle::All();
       $filiere = Filiere::All();
       $semestre = Semestre::All();
 
-      return view('frontEnd.etudiant', compact('annee','cycle','filiere','semestre')) ;
+
+      return view('frontEnd.etudiant', compact('annee','cycle','filiere','semestre','institut','departement')) ;
 
     }
 
@@ -55,6 +60,12 @@ class etudiantController extends Controller
 
         $annee = Annee::where('intitule', '=',$request->annee)->first() ;
         $annee_id = $annee->id ;
+
+        $institut = Institut::where('intitule', '=' ,$request->institut)->first();
+        $institut_id = $institut->id ;
+
+        $departement = Departement::where('intitule', '=' ,$request->departement)->first();
+        $departement_id = $departement->id ;
 
         $cycle = Cycle::where('intitule', '=' ,$request->cycle)->first();
         //$cycle = $cycle->fresh(); 
@@ -83,8 +94,12 @@ class etudiantController extends Controller
         $uv= Unite::join('cycles', 'cycles.id', '=','unites.cycle_id')
                         ->join('filieres', 'filieres.id', '=','unites.filiere_id')
                         ->join('semestres', 'semestres.id', '=','unites.semestre_id')
+                        ->join('instituts', 'instituts.id', '=','unites.institut_id')
+                        ->join('departements', 'departements.id', '=','unites.departement_id')
                         ->select('unites.id')
                         ->where('unites.cycle_id', '=', $cycle_id)
+                        ->where('unites.institut_id', '=', $institut_id)
+                        ->where('unites.departement_id', '=', $departement_id)
                         ->where('unites.filiere_id', '=', $filiere_id)
                         ->whereIn('unites.semestre_id', [$semestre1_id, $semestre2_id]) 
                         ->get() ;

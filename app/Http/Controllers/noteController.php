@@ -16,6 +16,9 @@ use App\Etudiant;
 use App\Session;
 use App\Module;
 use App\MoyenneModule;
+use App\Institut;
+use App\Departement;
+
 
 class noteController extends Controller
 {
@@ -29,6 +32,8 @@ class noteController extends Controller
     {
         //
       $annee = Annee::OrderBy('annees.intitule','desc')->get() ;
+      $institut = Institut::All() ;
+      $departement = Departement::All() ;
       $cycle = Cycle::All();
       $filiere = Filiere::All();
       $semestre = Semestre::All();
@@ -37,7 +42,7 @@ class noteController extends Controller
 
       // $etudiant = array() ;
 
-      return view('frontEnd.note', compact('annee','cycle','filiere','semestre','session','module')) ;
+      return view('frontEnd.note', compact('annee','cycle','filiere','semestre','session','module','institut','departement')) ;
 
     }
 
@@ -95,6 +100,8 @@ class noteController extends Controller
         
          return $etudiant= Inscription::join('etudiants', 'inscriptions.etudiant_matricule', '=' ,'etudiants.matricule')
                         ->join('unites','inscriptions.unite_id','=','unites.id')
+                        ->join('instituts', 'instituts.id', '=','unites.institut_id')
+                        ->join('departements', 'departements.id', '=','unites.departement_id')
                         ->join('cycles','unites.cycle_id','=','cycles.id')
                         ->join('filieres','unites.filiere_id','=','filieres.id')
                         ->join('semestres','unites.semestre_id','=','semestres.id')

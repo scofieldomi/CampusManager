@@ -37,6 +37,8 @@
                     <input type="hidden" name="cycle" value="{{ $cycle_id }}">
                     <input type="hidden" name="filiere" value="{{ $filiere_id }}">
                     <input type="hidden" name="semestre" value="{{ $semestre_id }}">
+                    <input type="hidden" name="institut" value="{{ $institut_id }}">
+                    <input type="hidden" name="departement" value="{{ $departement_id }}">
                     <input type="hidden" name="matricule" value="{{ $r->etudiant_matricule }}">
                   </tr>
                 @endforeach

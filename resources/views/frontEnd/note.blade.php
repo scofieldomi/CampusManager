@@ -24,7 +24,7 @@ CampusManager
                             {!! csrf_field() !!}
 
  <div class="card">
-                    <div class="card-header">Rechercher des Etudiants</div>
+                    <div class="card-header">Recherche des Etudiants</div>
 
                          <div class="card-body">
 
@@ -39,12 +39,37 @@ CampusManager
                   </select>
                 </div>
 
+
+               <div class="col-sm-4">
+               </div>
+
+
                  <div class="col-sm-4">
                 <label for="nom">Session</label>
                   <select name="session" class="form-control" id="session">
                      @foreach($session as $s)
                     <option value="{{$s->intitule}}">"{{$s->intitule}}"</option>
                      @endforeach
+                  </select>
+                </div>
+
+              <div class="col-sm-4">
+                <label for="nom">Institut</label>
+                  <select name="institut" class="form-control">
+                    <option value="+47">Choisir...</option>
+                    @foreach($institut as $i)
+                    <option value="{{$i->intitule}}">{{ $i->intitule}}</option>
+                    @endforeach
+                  </select>
+                </div>
+
+              <div class="col-sm-4">
+                <label for="nom">Departement</label>
+                  <select name="departement" class="form-control">
+                    <option value="+47">Choisir...</option>
+                    @foreach($departement as $d)
+                    <option value="{{$d->intitule}}">{{ $d->intitule}}</option>
+                    @endforeach
                   </select>
                 </div>
 

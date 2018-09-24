@@ -15,13 +15,26 @@ class CreateUnitesTable extends Migration
     {
         Schema::create('unites', function (Blueprint $table) {
             $table->increments('id')->unique();
+            $table->integer('institut_id')->unsigned();
+            $table->integer('departement_id')->unsigned();
             $table->integer('cycle_id')->unsigned();
             $table->integer('filiere_id')->unsigned();
             $table->integer('semestre_id')->unsigned();
-
             $table->string('code');
             $table->string('intitule');
 
+
+          $table->foreign('institut_id')
+                      ->references('id')
+                      ->on('instituts')
+                      ->onDelete('restrict')
+                      ->onUpdate('restrict');
+
+          $table->foreign('departement_id')
+                      ->references('id')
+                      ->on('departements')
+                      ->onDelete('restrict')
+                      ->onUpdate('restrict');
             
             $table->foreign('cycle_id')
                       ->references('id')

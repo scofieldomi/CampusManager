@@ -5,7 +5,7 @@ CampusManager
 @endsection
 
 @section('content')
-<div class="container">
+<div>
 
       <div class=" text-center">
                 <img class="d-block mx-auto" src="#" alt="" width="72" height="72">
@@ -19,7 +19,7 @@ CampusManager
       </div>
     <hr class="mb-3">
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="padding:10px;">
         <div class="col-md-6">
 
                 <div class="card">
@@ -32,9 +32,29 @@ CampusManager
 
                             {!! csrf_field() !!}
 
-<div class="row">
+<div class="row" >
+
+              <div class="col-sm-4">
+                <label for="nom">Institut</label>
+                  <select name="institut" class="form-control">
+                    <option value="+47">Choisir...</option>
+                    @foreach($institut as $i)
+                    <option value="{{$i->intitule}}">{{ $i->intitule}}</option>
+                    @endforeach
+                  </select>
+                </div>
+
+              <div class="col-sm-4">
+                <label for="nom">Departement</label>
+                  <select name="departement" class="form-control">
+                    <option value="+47">Choisir...</option>
+                    @foreach($departement as $d)
+                    <option value="{{$d->intitule}}">{{ $d->intitule}}</option>
+                    @endforeach
+                  </select>
+                </div>
        
-                <div class="col-sm-4">
+              <div class="col-sm-4">
                 <label for="nom">Cycle</label>
                   <select name="cycle" class="form-control">
                     <option value="+47">Choisir...</option>
@@ -55,7 +75,7 @@ CampusManager
                   </select>
                 </div>
 
-                 <div class="col-sm-3">
+                 <div class="col-sm-4">
                 <label for="nom">Semestre</label>
                   <select name="semestre" class="form-control">
                     <option value="+47">Choisir...</option>
@@ -67,7 +87,7 @@ CampusManager
 
 </div>
 
-
+<div class="row">
                                 <div class="col-md-8 mb-3">
                                 
                                   <label for="annee">Code</label> 
@@ -77,7 +97,7 @@ CampusManager
                                   <input name="uv" type="text" class="form-control" id="" placeholder="" value="" >
                                   
                                 </div> 
-
+</div>
                            <div class="col-md-3 order-md-1 col-md-offset-1">
                            
                             <button class="btn btn-success btn-lg btn-block" type="submit">Valider</button>
@@ -94,13 +114,14 @@ CampusManager
 
         <div class="col-md-6">
 
-
-          <table class="table">
+          <table class="table" >
         <thead class="thead-light">
               <tr>
                 <th scope="col">#</th>
                 <th scope="col" >Code</th>
                 <th scope="col" >UV</th>
+                <th scope="col" >Institut</th>
+                <th scope="col" >Département</th>
                 <th scope="col" >Cycle</th>
                 <th scope="col" >Filiere</th>
                 <th scope="col" >Semestre</th>
@@ -114,6 +135,8 @@ CampusManager
                     <th scope="row center">1</th>
                     <td>{{ $u->code }}</td>   
                     <td>{{ $u->uv }}</td> 
+                    <td>{{ $u->i }}</td>  
+                    <td>{{ $u->d }}</td>  
                     <td>{{ $u->c }}</td>  
                     <td>{{ $u->f }}</td> 
                     <td>{{ $u->s }}</td> 
@@ -126,9 +149,8 @@ CampusManager
 </table>
  {{  $uv->links() }}
         </div>
-</div>
-</div>
-
+    </div>
+  </div>
 </div>
 
 

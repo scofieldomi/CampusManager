@@ -45,6 +45,26 @@ CampusManager
                      @endforeach
                   </select>
                 </div>
+
+                  <div class="col-sm-4">
+                <label for="nom">Institut</label>
+                  <select name="institut" class="form-control">
+                    <option value="+47">Choisir...</option>
+                    @foreach($institut as $i)
+                    <option value="{{$i->intitule}}">{{ $i->intitule}}</option>
+                    @endforeach
+                  </select>
+                </div>
+
+                <div class="col-sm-4">
+                <label for="nom">Departement</label>
+                  <select name="departement" class="form-control">
+                    <option value="+47">Choisir...</option>
+                    @foreach($departement as $d)
+                    <option value="{{$d->intitule}}">{{ $d->intitule}}</option>
+                    @endforeach
+                  </select>
+                </div>
        
                 <div class="col-sm-4">
                 <label for="nom">Cycle</label>
@@ -56,6 +76,9 @@ CampusManager
                   </select>
                 </div>
 
+                <div class="col-sm-4 text-center">
+                
+                </div>
        
                 <div class="col-sm-4">
                 <label for="nom">Filière</label>
@@ -67,8 +90,7 @@ CampusManager
                   </select>
                 </div>
 
-
-                 <div class="col-sm-4">
+                <div class="col-sm-4">
                 <label for="nom">Semestre</label>
                   <select name="semestre1" class="form-control">
                     <option value="+47">Choisir...</option>
@@ -90,7 +112,6 @@ CampusManager
                      @endforeach
                   </select>
                 </div>
-
 
                                 <div class="col-md-8 mb-3">
                                 

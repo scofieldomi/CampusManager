@@ -7,6 +7,8 @@ use App\Cycle;
 use App\Filiere;
 use App\Semestre;
 use App\Unite;
+use App\Institut;
+use App\Departement;
 
 class uvController extends Controller
 {
@@ -18,18 +20,23 @@ class uvController extends Controller
     public function index()
     {
         //
+      $institut = Institut::All() ;
+      $departement = Departement::All() ;
       $cycle = Cycle::All();
       $filiere = Filiere::All();
       $semestre = Semestre::All();
 
+
       $uv= Unite::join('cycles', 'cycles.id', '=','unites.cycle_id')
                         ->join('filieres', 'filieres.id', '=','unites.filiere_id')
                         ->join('semestres', 'semestres.id', '=','unites.semestre_id')
-                        ->select('unites.code','unites.intitule as uv','cycles.intitule as c','filieres.intitule as f','semestres.intitule as s')
+                        ->join('instituts', 'instituts.id', '=','unites.institut_id')
+                        ->join('departements', 'departements.id', '=','unites.departement_id')
+                        ->select('unites.code','unites.intitule as uv','cycles.intitule as c','filieres.intitule as f','semestres.intitule as s','instituts.intitule as i','departements.intitule as d')
                         ->OrderBy('filieres.intitule','asc')
                         ->paginate(2);
 
-      return view('frontEnd.uv', compact('cycle','filiere','semestre','uv')) ;
+      return view('frontEnd.uv', compact('cycle','filiere','semestre','uv','institut','departement')) ;
     }
 
     /**
@@ -52,6 +59,12 @@ class uvController extends Controller
     {
         //
         
+        $institut = Institut::where('intitule', '=' ,$request->institut)->first();
+        $institut_id = $institut->id ;
+
+        $departement = Departement::where('intitule', '=' ,$request->departement)->first();
+        $departement_id = $departement->id ;
+
         $cycle = Cycle::where('intitule', '=' ,$request->cycle)->first();
         //$cycle = $cycle->fresh(); 
         $cycle_id = $cycle->id ;
@@ -63,16 +76,18 @@ class uvController extends Controller
         $semestre_id = $semestre->id ;
 
         $u = new Unite ;
-        $u->code = $request->code;
-        $u->intitule = $request->uv;
-        $u->cycle_id = $cycle_id;
-        $u->filiere_id = $filiere_id;
-        $u->semestre_id = $semestre_id;
+        $u->code = $request->code ;
+        $u->intitule = $request->uv ;
+        $u->institut_id = $institut_id ;
+        $u->departement_id = $departement_id ;
+        $u->cycle_id = $cycle_id ; 
+        $u->filiere_id = $filiere_id ;
+        $u->semestre_id = $semestre_id ;
 
         $u->save() ;
 
 
-        return redirect()->route('uv.index');
+        return redirect()->back();
     }
 
     /**

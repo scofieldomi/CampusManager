@@ -11,11 +11,11 @@ CampusManager
       <div class=" text-center">
                 <img class="d-block mx-auto mb-4" src="#" alt="" width="72" height="72">
                  <div class="alert alert-success">
-                <h2>Cycles</h2>
+                <h2>Instituts</h2>
                 </div>
                 <br>
                 <p class="lead">
-              Ajouter et lister les cycles de votre université
+              Ajouter et lister les instituts ou écoles de votre université
 
                 </p>
       </div>
@@ -26,18 +26,18 @@ CampusManager
 
 
                 <div class="card">
-                    <div class="card-header">Cycle</div>
+                    <div class="card-header">Institut ou Ecole</div>
 
                          <div class="card-body">
 
-                  <form class="needs-validation" method="POST" action="{{ route('cycle.store') }}">
+                  <form class="needs-validation" method="POST" action="{{ route('institut.store') }}">
 
                             {!! csrf_field() !!}
 
                                 <div class="col-md-8 mb-3">
                                 
                                   <!-- <label for="annee">Année Académique</label> -->
-                                  <input name="cycle" type="text" class="form-control" id="" placeholder="" value="" >
+                                  <input name="institut" type="text" class="form-control" id="" placeholder="" value="" >
                                   
                                 </div> 
 
@@ -57,7 +57,7 @@ CampusManager
 
         <div class="col-md-6">
 
-@if(is_null($cycle))
+@if(is_null($institut))
 
    <div class="alert alert-warning">
         <strong>Désolé</strong> Pas encore d'enregistrement !
@@ -69,17 +69,17 @@ CampusManager
         <thead class="thead-light">
               <tr>
                 <th scope="col">#</th>
-                <th scope="col" >Cycle</th>
+                <th scope="col" >Instituts</th>
                  <th scope="col" >Action</th>
               </tr>
         </thead>
 
         <tbody>
 
-              @foreach($cycle as $c)
+              @foreach($institut as $i)
                   <tr>
                     <th scope="row center">1</th>
-                    <td>{{ $c->intitule}}</td>
+                    <td>{{ $i->intitule}}</td>
                   
                     <td> <a href="#" class="btn btn-danger btn-block">
                     Supprimer</a>
@@ -88,7 +88,7 @@ CampusManager
                 @endforeach
         </tbody>
 </table>
-            {{  $cycle->links() }}
+            {{  $institut->links() }}
 @endif
         </div>
 </div>

@@ -37,6 +37,42 @@ Route::post('/annee/store', [
     'as'   => 'annee.store'
 ]);
 
+Route::get('/institut/index', [
+
+    'uses' => 'institutController@index',
+
+    'as'   => 'institut.index'
+]);
+
+
+Route::post('/institut/store', [
+
+    'uses' => 'institutController@store',
+
+    'as'   => 'institut.store'
+]);
+
+
+Route::get('/departement/index', [
+
+    'uses' => 'departementController@index',
+
+    'as'   => 'departement.index'
+]);
+
+
+Route::post('/departement/store', [
+
+    'uses' => 'departementController@store',
+
+    'as'   => 'departement.store'
+]);
+
+
+
+
+
+
 Route::get('/cycle/index', [
 
     'uses' => 'cycleController@index',

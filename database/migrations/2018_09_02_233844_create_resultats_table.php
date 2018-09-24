@@ -21,6 +21,8 @@ class CreateResultatsTable extends Migration
             $table->string('mention');
             $table->string('etudiant_matricule');
             $table->integer('annee_id')->unsigned();
+            $table->integer('institut_id')->unsigned();
+            $table->integer('departement_id')->unsigned();
             $table->integer('cycle_id')->unsigned();
             $table->integer('filiere_id')->unsigned();
             $table->integer('semestre_id')->unsigned();
@@ -38,6 +40,18 @@ class CreateResultatsTable extends Migration
                   ->on('etudiants')
                   ->onDelete('restrict')
                   ->onUpdate('restrict');
+
+            $table->foreign('institut_id')
+                      ->references('id')
+                      ->on('instituts')
+                      ->onDelete('restrict')
+                      ->onUpdate('restrict');
+
+            $table->foreign('departement_id')
+                      ->references('id')
+                      ->on('departements')
+                      ->onDelete('restrict')
+                      ->onUpdate('restrict');
            
             
             $table->foreign('cycle_id')
