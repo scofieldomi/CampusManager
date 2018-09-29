@@ -8,7 +8,6 @@ CampusManager
 <div class="container">
 
       <div class=" text-center">
-                <img class="d-block mx-auto" src="#" alt="" width="72" height="72">
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">

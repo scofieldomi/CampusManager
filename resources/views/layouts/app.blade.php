@@ -136,7 +136,7 @@
           </li> -->
           <li class="nav-item">
             <a class="nav-link waves-effect waves-light">
-              1<i class="fa fa-envelope"></i>
+              3<i class="fa fa-envelope"></i>
             </a>
           </li>
 
@@ -146,14 +146,18 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
+                                <a class="dropdown-item" href="#"> <i class="fa fa-user-circle"></i> Compte</a>
+
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();"  >
-                                    <span>Deconnexion</span>
+                                 <i class="fa fa-user-times" aria-hidden="true"></i></i> <span>Deconnexion</span>
                                 </a>
                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
+
+
 
         </div>
       </li>

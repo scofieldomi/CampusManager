@@ -1,7 +1,7 @@
 
 <br>
             <!-- <footer class="foot" style="background-color : rgb(116,194,120);"> -->
-   <footer class="foot" style="background-color : black ;">
+   <footer class="foot" style="background-color : rgb(59,59,59);">
         <div class="footer-section">
             <div class="container">
   
