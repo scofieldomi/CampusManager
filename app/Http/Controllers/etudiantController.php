@@ -126,12 +126,14 @@ class etudiantController extends Controller
 
         $etudiant= Inscription::join('etudiants', 'inscriptions.etudiant_matricule', '=' ,'etudiants.matricule')
                         ->join('unites','inscriptions.unite_id','=','unites.id')
+                        ->join('instituts', 'instituts.id', '=','unites.institut_id')
+                        ->join('departements', 'departements.id', '=','unites.departement_id')
                         ->join('cycles','unites.cycle_id','=','cycles.id')
                         ->join('filieres','unites.filiere_id','=','filieres.id')
                         ->join('semestres','unites.semestre_id','=','semestres.id')
                         ->join('annees','annees.id','=','inscriptions.annee_id')
-                        ->select('etudiants.matricule','etudiants.nom','etudiants.prenom','cycles.intitule as c','filieres.intitule as f', 'annees.intitule as a')
-                        ->groupBy('etudiants.matricule','etudiants.nom','etudiants.prenom','cycles.intitule','filieres.intitule','annees.intitule') 
+                        ->select('etudiants.matricule','etudiants.nom','etudiants.prenom','instituts.intitule as i','departements.intitule as d','cycles.intitule as c','filieres.intitule as f', 'annees.intitule as a')
+                        ->groupBy('etudiants.matricule','etudiants.nom','instituts.intitule','departements.intitule','etudiants.prenom','cycles.intitule','filieres.intitule','annees.intitule') 
                         ->get(); 
 
       $compte = $etudiant->count() ;

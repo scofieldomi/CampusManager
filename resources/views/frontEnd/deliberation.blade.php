@@ -8,10 +8,16 @@ CampusManager
 <div class="container">
 
       <div class=" text-center">
-                <img class="d-block mx-auto mb-4" src="#" alt="" width="72" height="72">
-                  <div class="alert alert-success">
+ 
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Délibération</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Effectuer une délibération</li>
+          </ol>
+        </nav>
+              <!--     <div class="alert alert-success">
                 <h2>Délibération</h2>
-                  </div>  
+                  </div>  -->
                 <br>
                 <p class="lead">
                 Effectuez une délibérarion ici
@@ -54,7 +60,7 @@ CampusManager
 
               <div class="col-sm-4">
                 <label for="nom">Institut</label>
-                  <select name="institut" class="form-control">
+                  <select name="institut" class="form-control" require>
                     <option value="+47">Choisir...</option>
                     @foreach($institut as $i)
                     <option value="{{$i->intitule}}">{{ $i->intitule}}</option>
@@ -63,7 +69,7 @@ CampusManager
                 </div>
 
               <div class="col-sm-4">
-                <label for="nom">Departement</label>
+                <label for="nom">Département</label>
                   <select name="departement" class="form-control">
                     <option value="+47">Choisir...</option>
                     @foreach($departement as $d)
@@ -105,6 +111,13 @@ CampusManager
                   </select>
                 </div>
 
+<div class="col-sm-4">
+
+ <span for="compenseNote" style="padding:2px;">Compenser à partir de </span> 
+ <input name="compenseNote" type="text" class="form-control" id="" placeholder="ex : 9.90" value="" autocomplete="on" style="margin-top:10px;">
+  
+</div>          
+
 
 </div>
  <div class="row justify-content-center">
@@ -126,9 +139,9 @@ CampusManager
 
  <hr class="mb-2">
 
-
 <div class="resultat">
   
+    
 
 </div>
 

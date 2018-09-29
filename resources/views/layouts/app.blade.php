@@ -37,33 +37,33 @@
 
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
-<!--   <a class="navbar-brand" href="#">Campus Manager</a> -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse col-right" id="navbarNavDropdown" >
-    <ul class="navbar-nav">
+<!--Navbar -->
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color">
+      <a class="navbar-brand" href="{{ route('home') }}">Accueil</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3"
+        aria-controls="navbarSupportedContent-3" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-3">
+        <ul class="navbar-nav mr-auto">
 
-      <li class="nav-item dropdown">
+       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Gestion des étudiants
+          Etudiants
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{{ route('etudiant.index') }}">Inscrire un étudiant</a>
              <a class="dropdown-item" href="#">Rechercher un étudiant</a>
-          <a class="dropdown-item" href="{{ route('etudiant.liste') }}">Voir la liste des étudiants</a>
-          
-        </div>
-      </li>
+          <a class="dropdown-item" href="{{ route('etudiant.liste') }}">Liste des étudiants</a>
 
-      <li class="nav-item dropdown">
+
+           <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Gestion des enseignants
+          Enseignants
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#">Ajouter un enseignant</a>
-          <a class="dropdown-item" href="#">liste des enseignants</a>
+          <a class="dropdown-item" href="#">Liste des enseignants</a>
           <a class="dropdown-item" href="#">Assigner un module à un enseignant</a>
           <a class="dropdown-item" href="#">Envoyer un email à un enseignant</a>
          
@@ -73,7 +73,7 @@
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Gestion des notes
+          Notes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{{ route('note.index') }}">Saisie des notes</a>
@@ -84,12 +84,12 @@
 
        <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Résultats
+          Délibération
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-       <a class="dropdown-item" href="{{ route('deliberation.index') }}">Effectuer une déliberation</a>
-       <a class="dropdown-item" href="#">Procès verbal</a>
+       <a class="dropdown-item" href="{{ route('deliberation.index') }}">Effectuer une délibération</a>
+       <a class="dropdown-item" href="#">Résultats</a>
        
         </div>
       </li>
@@ -125,34 +125,47 @@
         </div>
       </li>
 
-                        <li class="float-right btn btn-sm " id="logout" >
+
+
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+<!--           <li class="nav-item">
+            <a class="nav-link waves-effect waves-light">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link waves-effect waves-light">
+              1<i class="fa fa-envelope"></i>
+            </a>
+          </li>
+
+     <li class="nav-item dropdown" >
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ Auth::user()->name }} 
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                                 <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();" class="btn btn-success">
-                                   <i class="glyphicon glyphicon-search"></i> <span>Deconnexion</span>
+                                   onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();"  >
+                                    <span>Deconnexion</span>
                                 </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
 
-                        </li>
-                        <li class="float-right btn btn-sm " id="logout">
-                            <a href="#" class="btn btn-success">
-                               
-                                &nbsp;
-                               
-                                <span> {{ Auth::user()->name }} </span>
-                             
-                            </a>
-                        </li>
-                    @else
+        </div>
+      </li>
 
-                    @endif
-    </ul>
-  </div>
-</nav>
+
+        </ul>
+      </div>
+    </nav>
+    <!--/.Navbar -->
+
+@endif
+
 
         <main>
             @yield('content')
@@ -160,10 +173,15 @@
 
     </div>
 
-      <!--   @include('layouts.footer') -->
+ @if(Auth::check())
+
+        @include('layouts.footer')
+
+@endif
         @include('layouts.scripts')
         @include('sweet::alert')
         @yield('scripts')
+
 
 </body>
 

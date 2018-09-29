@@ -9,9 +9,18 @@ CampusManager
 
       <div class=" text-center">
                 <img class="d-block mx-auto" src="#" alt="" width="72" height="72">
-                 <div class="alert alert-success">
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Gestion des étudiants</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Inscrire un étudiant</li>
+  </ol>
+</nav>
+
+          <!--        <div class="alert alert-success">                 
                 <h2>Etudiants</h2>
                 </div>
+ -->
                 <br>
                 <p class="lead">
                 Ajouter les étudiants inscrits dans votre université 
@@ -134,11 +143,12 @@ CampusManager
                                   <input name="telephone" type="text" class="form-control" id="" placeholder="" value="" autocomplete="on">
                                   
                                 </div> 
+                                
         </div>
           <div class="row justify-content-center">
-                               <div class="col-md-3 order-md-1 col-md-offset-1">
+                               <div class="col-md-5 order-md-1 col-md-offset-1">
                                
-                                <button class="btn btn-success btn-lg btn-block" type="submit">Valider</button>
+                                <button class="btn btn-success btn-block" type="submit">Valider</button>
 
                               </div>
 </div>

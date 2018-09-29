@@ -1,7 +1,9 @@
     @include('layouts.style')
-  
+    
   <div class="row justify-content-center">
         <div class="col-md-8">
+
+            
 
 <form target="_blank" class="needs-validation" method="POST" action="{{ route('deliberation.imprimer') }}">
 
@@ -74,6 +76,9 @@
     <div class="row justify-content-center">
            <div class="col-sm-4">
                     
+@if(session()->has('ok'))
+               <div class="alert alert-warning alert-dismissible " >{!! session('ok') !!}</div>
+                @endif
             </div>
     </div>
      

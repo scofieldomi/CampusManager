@@ -88,10 +88,17 @@ class deliberationController extends Controller
           $compte = $resultats->count() ;
           $i = 1 ;
 
-            $view = view('frontEnd.getStudentResultat',compact('resultats','annee_id','session_id','cycle_id','filiere_id','semestre_id','institut_id','departement_id'))->render() ;
+            $view = view('frontEnd.getStudentResultat',compact('resultats','annee_id','session_id','cycle_id','filiere_id','semestre_id','institut_id','departement_id'))->render();
 
             return response($view) ;
+        } else {
+
+         $view = view('frontEnd.ResultatNotFound')->render();
+
+            return response($view) ;
+
         }
+
 
     }
  }
@@ -109,12 +116,12 @@ class deliberationController extends Controller
         //
      
        $moyenne = 0.0 ;
-       $lesMoyennes = array();
+       $lesMoyennes = array() ;
        $rang = 1 ;
        $mention = "" ;
        $decision = "" ;
 
-//recherche de la somme des coefficients d'un CFS 
+   //recherche de la somme des coefficients d'un CFS 
         $divisePar = Unite::join('modules', 'modules.unite_id', '=' , 'unites.id')
                         ->where('unites.institut_id', '=', $institut_id)
                         ->where('unites.departement_id', '=', $departement_id)
@@ -124,6 +131,7 @@ class deliberationController extends Controller
                         ->select(DB::raw('sum(coef) as somme'))
                         ->first(); 
 
+   //Recherche des etudiants inscrits dans un CFS 
          $etudiants = Inscription::join('etudiants', 'inscriptions.etudiant_matricule', '=' ,'etudiants.matricule')
                         ->join('unites','inscriptions.unite_id','=','unites.id')
                         ->join('instituts','unites.institut_id','=','instituts.id')
@@ -261,7 +269,6 @@ class deliberationController extends Controller
  public function imprimer(Request $request)
     {
 
-
    $annee_id = $request->input('annee') ;
 
      $a = Annee::where('id', '=',$annee_id)->first() ;
@@ -278,8 +285,6 @@ class deliberationController extends Controller
     $departement_id = $request->input('departement') ;
     $d = Departement::where('id', '=',$departement_id)->first() ;
     $departement = $d->intitule ;
-
-
 
     $cycle_id = $request->input('cycle') ;
     $filiere_id = $request->input('filiere') ;
@@ -329,7 +334,6 @@ if($request->action == 'ADMIS'){
                         ->OrderBy('etudiants.nom','asc')
                         ->OrderBy('etudiants.prenom','asc')
                         ->get() ; 
-
 
         $pdf = PDF::loadView('frontEnd.imprimerPV',['etudiants'=>$etudiants,'annee'=>$annee,'semestre'=>$semestre,'session'=>$session,'institut'=>$institut,'departement'=>$departement]) ;
         $pdf->setPaper('legal','landscape');

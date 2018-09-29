@@ -8,10 +8,18 @@ CampusManager
 <div class="container">
 
       <div class=" text-center">
-                <img class="d-block mx-auto mb-4" src="#" alt="" width="72" height="72">
+      
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Gestion des notes</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Saisie des notes</li>
+          </ol>
+        </nav>
+<!-- 
                   <div class="alert alert-success">
                 <h2>Saisie des notes</h2>
                   </div>  
+ -->
                 <br>
                 <p class="lead">
                 Saisissez ici les notes des étudiants dans un module
@@ -24,7 +32,7 @@ CampusManager
                             {!! csrf_field() !!}
 
  <div class="card">
-                    <div class="card-header">Recherche des Etudiants</div>
+                    <div class="card-header">Recherche des étudiants</div>
 
                          <div class="card-body">
 
@@ -42,7 +50,6 @@ CampusManager
 
                <div class="col-sm-4">
                </div>
-
 
                  <div class="col-sm-4">
                 <label for="nom">Session</label>
@@ -64,7 +71,7 @@ CampusManager
                 </div>
 
               <div class="col-sm-4">
-                <label for="nom">Departement</label>
+                <label for="nom">Département</label>
                   <select name="departement" class="form-control">
                     <option value="+47">Choisir...</option>
                     @foreach($departement as $d)

@@ -16,3 +16,12 @@
 
    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
    <link href="{{ asset('css/app.dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
+     <!-- MDB Bootstrap et  font-awesome -->
+   <link href="{{ asset('font/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+   <link href="{{ asset('css/mdb/css/bootstrap.min.css') }}" rel="stylesheet">
+   <link href="{{ asset('css/mdb/css/mdb.min.css') }}" rel="stylesheet">
+   <link href="{{ asset('css/mdb/css/style.css') }}" rel="stylesheet">
+
+
+

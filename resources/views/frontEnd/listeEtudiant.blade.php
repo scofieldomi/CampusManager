@@ -10,10 +10,17 @@ CampusManager
 
 
       <div class=" text-center">
-                <img class="d-block mx-auto mb-4" src="#" alt="" width="72" height="72">
-                  <div class="alert alert-success">
+            
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Gestion des étudiants</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Liste des étudiants</li>
+          </ol>
+        </nav>
+
+              <!--     <div class="alert alert-success">
                 <h2>Liste des étudiants</h2>
-                  </div>  
+                  </div>   -->
                 <br>
                 <p class="lead">
               Voir la liste des étudiants enregistrés
@@ -22,7 +29,7 @@ CampusManager
         <hr class="mb-4">
 
  <div class="card">
-                    <div class="card-header">Rechercher des Etudiants</div>
+                    <div class="card-header">Indiquer les critères de recherche</div>
 
                          <div class="card-body">
 
@@ -34,6 +41,21 @@ CampusManager
                   <select name="annee" class="form-control">                  
                     <option value="">Choisir...</option>
 
+                  </select>
+                </div>
+
+
+                 <div class="col-sm-4">
+                <label for="nom">Institut</label>
+                  <select name="institut" class="form-control">
+                    <option value="+47">Choisir...</option>
+                  </select>
+                </div>
+
+              <div class="col-sm-4">
+                <label for="nom">Département</label>
+                  <select name="departement" class="form-control">
+                    <option value="+47">Choisir...</option>
                   </select>
                 </div>
        
@@ -54,27 +76,10 @@ CampusManager
                   </select>
                 </div>
 
+                  <div class="col-sm-4">
+                  </div>
 
-                 <div class="col-sm-4">
-                <label for="nom">Semestre</label>
-                  <select name="semestre1" class="form-control">
-                    <option value="+47">Choisir...</option>
-                
-                  </select>
-                </div>
-                <div class="col-sm-4 text-center">
-                <span>et</span>
-                </div>
-
-                 <div class="col-sm-4">
-                <label for="nom">Semestre</label>
-                  <select name="semestre2" class="form-control">
-                    <option value="+47">Choisir...</option>
-                    
-                  </select>
-                </div>
-
-            <div class="col-sm-4">
+            <div class="col-sm-4 py-3">
                 <a href="#" class="btn btn-success btn-block">
                     Rechercher</a>
               </div>
@@ -85,7 +90,7 @@ CampusManager
 </div>
 
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
 
     <!-- <div style="text-align:center; color:#909090; font-size:8pt;"> Faire un double-clic pour afficher la liste des demandeurs</div> -->
 @if($compte != 0)
@@ -99,8 +104,8 @@ CampusManager
                 <th>Prenom</th>  
                 <th>Cycle</th> 
                 <th>Filiere</th>
-                <th >Détails</th>
-                <th >Modifier</th>
+                <th>Détails</th>
+                <th>Modifier</th>
                 <th>Supprimer</th>
               </tr>
         </thead>
