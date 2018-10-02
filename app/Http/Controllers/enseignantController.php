@@ -14,6 +14,14 @@ class enseignantController extends Controller
     public function index()
     {
         //
+                $institut = Institut::first();
+
+        if(!$institut==null){
+          $institut = $institut->paginate(2);
+          return view('frontEnd.institut', compact('institut')) ;
+        } else {
+        $institut = null ;
+        return view('frontEnd.institut', compact('institut')) ;  }
     }
 
     /**

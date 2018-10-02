@@ -33,7 +33,6 @@ class etudiantController extends Controller
       $filiere = Filiere::All();
       $semestre = Semestre::All();
 
-
       return view('frontEnd.etudiant', compact('annee','cycle','filiere','semestre','institut','departement')) ;
 
     }
@@ -116,7 +115,7 @@ class etudiantController extends Controller
 
          Alert::success('Etudiant bien enregistré. Merci','Confirmation')->autoclose(3500);
 
-         return redirect()->route('etudiant.index')->withOk("L'Etudiant ".$request->nom." ".$request->prenom.", matricule ".$request->matricule.", à bien été enregistré dans la filière ".$request->filiere.". Merci");
+         return redirect()->route('etudiant.index')->withOk("L'Etudiant ".$request->nom." ".$request->prenom.", matricule ".$request->matricule.", à bien été enregistré dans la filière ".$request->filiere.".");
     }
 
 
@@ -134,6 +133,8 @@ class etudiantController extends Controller
                         ->join('annees','annees.id','=','inscriptions.annee_id')
                         ->select('etudiants.matricule','etudiants.nom','etudiants.prenom','instituts.intitule as i','departements.intitule as d','cycles.intitule as c','filieres.intitule as f', 'annees.intitule as a')
                         ->groupBy('etudiants.matricule','etudiants.nom','instituts.intitule','departements.intitule','etudiants.prenom','cycles.intitule','filieres.intitule','annees.intitule') 
+                        ->OrderBy('etudiants.nom','asc')
+                        ->OrderBy('etudiants.prenom','asc')
                         ->get(); 
 
       $compte = $etudiant->count() ;

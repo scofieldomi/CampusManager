@@ -19,9 +19,17 @@ CampusManager
                 <h2>Délibération</h2>
                   </div>  -->
                 <br>
-                <p class="lead">
-                Effectuez une délibérarion ici
-                </p>
+
+                <div class="row justify-content-center">
+                 <div class="col-sm-8">
+                      <p class="lead">
+                          <div class="alert alert-primary" role="alert">
+                              Effectuez une délibérarion ici
+                          </div>
+                      </p>
+                  </div>
+                </div>
+
       </div>
   
         <hr class="mb-4">

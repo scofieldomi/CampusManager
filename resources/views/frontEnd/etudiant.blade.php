@@ -22,10 +22,19 @@ CampusManager
  -->
                 <br>
                 <p class="lead">
-                Ajouter les étudiants inscrits dans votre université 
-                
+               
+               <div class="row justify-content-center">
+                   <div class="col-sm-8">
+                        <p class="lead">
+                            <div class="alert alert-primary" role="alert">
+                                 Ajouter les étudiants inscrits dans votre université 
+                            </div>
+                        </p>
+                    </div>
+                </div>
+
                @if(session()->has('ok'))
-               <div class="alert alert-warning alert-dismissible " >{!! session('ok') !!}</div>
+               <div class="alert alert-success alert-dismissible " >{!! session('ok') !!}</div>
                 @endif
                 </p>
       </div>

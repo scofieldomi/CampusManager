@@ -39,7 +39,7 @@
 
 <!--Navbar -->
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color">
-      <a class="navbar-brand" href="{{ route('home') }}">Accueil</a>
+      <a class="navbar-brand" href="{{ route('home') }}"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3"
         aria-controls="navbarSupportedContent-3" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -56,8 +56,10 @@
              <a class="dropdown-item" href="#">Rechercher un étudiant</a>
           <a class="dropdown-item" href="{{ route('etudiant.liste') }}">Liste des étudiants</a>
 
+         </div>
+      </li>
 
-           <li class="nav-item dropdown">
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Enseignants
         </a>
@@ -84,7 +86,7 @@
 
        <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Délibération
+          Délibérations
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
@@ -129,16 +131,19 @@
 
         </ul>
         <ul class="navbar-nav ml-auto nav-flex-icons">
-<!--           <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link waves-effect waves-light">
-              <i class="fa fa-twitter"></i>
+            2<i class="fa fa-bell" aria-hidden="true"></i>
             </a>
-          </li> -->
+          </li>
           <li class="nav-item">
             <a class="nav-link waves-effect waves-light">
               3<i class="fa fa-envelope"></i>
             </a>
+
           </li>
+
+
 
      <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

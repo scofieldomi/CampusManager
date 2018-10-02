@@ -8,7 +8,7 @@ CampusManager
 <div class="container">
 
       <div class=" text-center">
-      
+
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Gestion des notes</a></li>
@@ -21,9 +21,15 @@ CampusManager
                   </div>  
  -->
                 <br>
+                 <div class="row justify-content-center">
+                 <div class="col-sm-8">
                 <p class="lead">
-                Saisissez ici les notes des étudiants dans un module
+                    <div class="alert alert-primary" role="alert">
+                       Saisissez ici les notes des étudiants dans un module
+                    </div>
                 </p>
+                  </div>
+                </div>
       </div>
   
         <hr class="mb-4">
@@ -45,7 +51,7 @@ CampusManager
                     <option value="{{$a->intitule}}">"{{$a->intitule}}"</option>
                      @endforeach
                   </select>
-                </div>
+               </div>
 
 
                <div class="col-sm-4">

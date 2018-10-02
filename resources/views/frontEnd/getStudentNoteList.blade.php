@@ -11,13 +11,13 @@
         <thead class="thead-light">
               <tr>
 
-                <th>#</th>
-                <th>Année Académique</th>
-                <th>Matricule</th>
-                <th>Nom</th>
-                <th>Prenom</th> 
-                <th>Note</th> 
-           
+                <th> <strong>#</strong></th>
+                <th><strong>Année Académique</strong></th>
+                <th><strong>Matricule</strong> </th>
+                <th><strong>Nom</strong></th>
+                <th><strong>Prénom</strong></th> 
+                <th><strong>Note</strong></th> 
+
               </tr>
         </thead>
 
@@ -27,10 +27,10 @@
                   <tr>
 
                     <th scope="row center">{{ $i++ }}</th>
-                    <td>{{ $annee }}</td>
-                    <td>{{$e->matricule}}</td>
-                    <td>{{ $e->nom}}</td>
-                    <td>{{ $e->prenom}}</td>
+                    <td><strong>{{ $annee }}</strong></td>
+                    <td><strong>{{$e->matricule}}</strong></td>
+                    <td><strong>{{ $e->nom}}</strong></td>
+                    <td><strong>{{ $e->prenom}}</strong></td>
                     <td><input type="text" name="note[]" value=""  class="form-control mb-1 mr-sm-1" id="" placeholder="" ></td>
                     <input type="hidden" name="session" value="{{ $session_id }}">
                     <input type="hidden" name="annee" value="{{ $annee_id }}">
@@ -43,7 +43,7 @@
 
 </table>
 
-  
+
 <button type="submit" class="btn btn-success btn-block">
                         Valider les notes
                     </button>

@@ -56,9 +56,9 @@ CampusManager
                                   
                                 </div> 
 </div>
-                           <div class="col-md-3 order-md-1 col-md-offset-1">
+                           <div class="col-md-5 order-md-1 col-md-offset-1">
                            
-                            <button class="btn btn-success btn-lg btn-block" type="submit">Valider</button>
+                            <button class="btn btn-success btn-block" type="submit">Valider</button>
 
                             </div>
 

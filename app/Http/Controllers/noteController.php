@@ -110,6 +110,8 @@ class noteController extends Controller
                         ->select('etudiants.matricule','etudiants.nom','etudiants.prenom','modules.id as mid')
                         ->groupBy('etudiants.matricule','etudiants.nom','etudiants.prenom','unites.code','modules.id')
                         ->having('modules.id', '=', $mode)
+                        ->OrderBy('etudiants.nom','asc')
+                        ->OrderBy('etudiants.prenom','asc')
                         ->get() ; 
 
     }

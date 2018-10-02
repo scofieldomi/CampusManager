@@ -3,7 +3,7 @@
   <div class="row justify-content-center">
         <div class="col-md-8">
 
-            
+
 
 <form target="_blank" class="needs-validation" method="POST" action="{{ route('deliberation.imprimer') }}">
 
@@ -13,12 +13,12 @@
         <thead class="thead-light">
               <tr>
 
-                <th>Rang</th>
-                <th>Matricule</th>
-                <th>Nom</th>
-                <th>Prenom</th> 
-                <th>Moyenne</th> 
-                <th>Mention</th> 
+                <th><strong>Rang</strong></th>
+                <th><strong>Matricule</strong></th>
+                <th><strong>Nom</strong></th>
+                <th><strong>Prénom</strong></th> 
+                <th><strong>Moyenne</strong></th> 
+                <th><strong>Mention</strong></th> 
            
               </tr>
         </thead>
@@ -28,12 +28,12 @@
                @foreach($resultats->unique('etudiant_matricule') as $r)
                   <tr>
 
-                    <th scope="row center">{{ $r->rang }}</th>
-                    <td>{{ $r->etudiant_matricule }}</td>
-                    <td>{{ $r->nom }}</td>
-                    <td>{{ $r->prenom }}</td>
-                    <td>{{ $r->moyenne }} </td>
-                    <td>{{ $r->mention }}</td>
+                    <th scope="row center"><strong>{{ $r->rang }}</strong></th>
+                    <td><strong>{{ $r->etudiant_matricule }}</strong></td>
+                    <td><strong>{{ $r->nom }}</strong></td>
+                    <td><strong>{{ $r->prenom }}</strong></td>
+                    <td><strong>{{ $r->moyenne }}</strong></td>
+                    <td><strong>{{ $r->mention }}</strong></td>
                     <input type="hidden" name="annee" value="{{ $annee_id }}">
                     <input type="hidden" name="session" value="{{ $session_id }}">
                     <input type="hidden" name="cycle" value="{{ $cycle_id }}">
@@ -68,25 +68,19 @@
 </div>
 
 
-
         </div>
 
      </div>
 
     <div class="row justify-content-center">
            <div class="col-sm-4">
-                    
-@if(session()->has('ok'))
-               <div class="alert alert-warning alert-dismissible " >{!! session('ok') !!}</div>
-                @endif
+
             </div>
     </div>
      
 </form>
         
     </div>
-
-
 
 
  <script type="text/javascript">
@@ -106,9 +100,9 @@
      "sLengthMenu":   "Afficher _MENU_",
      "sInfo": "_START_ &agrave; _END_ sur _TOTAL_",
      "sSearch":       "Rechercher : ",
-      "sInfoFiltered": "",
-      "sInfoPostFix":  "",
-      "sUrl":          "",
+     "sInfoFiltered": "",
+     "sInfoPostFix":  "",
+     "sUrl":          "",
 
 "oPaginate": {
                 "sFirst":    "|<",

@@ -22,9 +22,16 @@ CampusManager
                 <h2>Liste des étudiants</h2>
                   </div>   -->
                 <br>
-                <p class="lead">
-              Voir la liste des étudiants enregistrés
-                </p>
+
+               <div class="row justify-content-center">
+                   <div class="col-sm-8">
+                        <p class="lead">
+                            <div class="alert alert-primary" role="alert">
+                                Voir la liste des étudiants enregistrés
+                            </div>
+                        </p>
+                    </div>
+                </div>
       </div>
         <hr class="mb-4">
 
@@ -98,15 +105,15 @@ CampusManager
         <thead class="thead-light">
               <tr>
                 <th>#</th>
-                <th>Année Académique </th>
-                <th>Matricule</th>
-                <th>Nom</th>
-                <th>Prenom</th>  
-                <th>Cycle</th> 
-                <th>Filiere</th>
-                <th>Détails</th>
-                <th>Modifier</th>
-                <th>Supprimer</th>
+                <th><strong>Année Académique </strong>  </th>
+                <th><strong>Matricule</strong>  </th>
+                <th><strong>Nom</strong></th>
+                <th><strong>Prénom</strong> </th>  
+                <th><strong>Cycle</strong></th> 
+                <th><strong> Filiere</strong></th>
+                <th><strong>Détails</strong></th>
+                <th><strong>Modifier</strong></th>
+                <th><strong>Supprimer</strong></th>
               </tr>
         </thead>
 
@@ -114,13 +121,14 @@ CampusManager
               @foreach($etudiant as $e)
                   <tr>
                     <th scope="row center">{{ $i++ }}</th>
-                    <td>{{ $e->a}}</td>
-                    <td>{{ $e->matricule}}</td>
-                    <td>{{ $e->nom}}</td>
-                    <td>{{ $e->prenom}}</td>
-                    <td>{{ $e->c}}</td>
-                    <td>{{ $e->f}}</td>
+                    <td><strong>{{ $e->a}}</strong> </td>
+                    <td><strong>{{ $e->matricule}}</strong></td>
+                    <td><strong>{{ $e->nom}}</strong></td>
+                    <td><strong>{{ $e->prenom}}</strong></td>
+                    <td><strong>{{ $e->c}}</strong></td>
+                    <td><strong>{{ $e->f}}</strong></td>
                     <td> 
+
                      <a href="#" class="btn btn-success btn-block">
                     details</a>
                    </td>
