@@ -15,8 +15,17 @@ class CreateDepartementsTable extends Migration
     {
         Schema::create('departements', function (Blueprint $table) {
             $table->increments('id')->unique();
+            $table->integer('institut_id')->unsigned();
             $table->string('intitule');
             $table->timestamps();
+
+            $table->foreign('institut_id')
+                  ->references('id')
+                  ->on('instituts')
+                  ->onDelete('restrict')
+                  ->onUpdate('restrict');
+
+
         });
     }
 

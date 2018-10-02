@@ -15,12 +15,21 @@ class Enseignant extends Model
          return $this->belongsTo('App\User');
      }
 
-
    public function modules()
-     {
+    {
        return $this->belongsToMany('App\Module');
     }
 
+    public function instituts() {
+
+     return $this->hasMany('App\Institut');
+   }
+
+    public function departements() {
+
+     return $this->hasMany('App\Departement');
+
+   }
 
 }
 

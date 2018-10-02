@@ -8,8 +8,20 @@ class Unite extends Model
 {
     //
     protected $fillable = [
-       'id','cycle_id', 'filiere_id','semestre_id','code','intitule'
+       'id','institut_id','departement_id', 'cycle_id', 'filiere_id','semestre_id','code','intitule'
     ];
+
+
+   public function instituts() 
+     {
+         return $this->belongsTo('App\Institut');
+     }
+
+        public function departements() 
+     {
+         return $this->belongsTo('App\Departement');
+     }
+
 
    public function cycles() 
      {

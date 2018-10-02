@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Institut;
 use App\Departement;
+
 
 class departementController extends Controller
 {
@@ -15,15 +17,16 @@ class departementController extends Controller
     public function index()
     {
         //
-         $departement = Departement::first();
+         $institut = Institut::All() ;
 
-        if(!$departement==null){
-          $departement = $departement->paginate(2);
-          return view('frontEnd.departement', compact('departement')) ;
-        } else {
-        $departement = null ;
-        return view('frontEnd.departement', compact('departement')) ;  }
+         $departement= Departement::join('instituts', 'instituts.id', '=','departements.institut_id')
+                         ->select('instituts.intitule as i','departements.intitule as d')
+                        ->OrderBy('instituts.intitule','asc')
+                        ->paginate(2);
 
+          
+          return view('frontEnd.departement', compact('departement','institut')) ;
+       
     }
 
     /**
@@ -45,8 +48,14 @@ class departementController extends Controller
     public function store(Request $request)
     {
         //
+       $institut = Institut::where('intitule', '=' ,$request->institut)->first();
+       $institut_id = $institut->id ;
+
+
         $departement = new Departement ;
+        $departement->institut_id = $institut_id;
         $departement->intitule = $request->departement;
+
         $departement->save() ;
 
         return redirect()->back();

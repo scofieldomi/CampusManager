@@ -34,19 +34,40 @@ CampusManager
 
                             {!! csrf_field() !!}
 
+     <div class="row" >
+
+              <div class="col-sm-4 mb-3">
+                <label for="nom">Institut</label>
+                  <select name="institut" class="form-control">
+                    <option value="+47">Choisir...</option>
+                    @foreach($institut as $i)
+                    <option value="{{$i->intitule}}">{{ $i->intitule}}</option>
+                    @endforeach
+                  </select>
+                </div>
+
+
+      </div>
+
+       <div class="row" >
+
+
+
                                 <div class="col-md-8 mb-3">
                                 
                                   <!-- <label for="annee">Année Académique</label> -->
-                                  <input name="departement" type="text" class="form-control" id="" placeholder="">
+                                  <input name="departement" type="text" class="form-control" id="" placeholder="Département">
                                   
                                 </div> 
+
+
 
                            <div class="col-md-5 order-md-1 col-md-offset-0">
                            
                             <button class="btn btn-success btn-block" type="submit">Valider</button>
 
                             </div>
-
+      </div>
                   </form>
                          
            </div>
@@ -57,7 +78,7 @@ CampusManager
 
         <div class="col-md-6">
 
-@if(is_null($departement))
+@if(count($departement) == 0 )
 
    <div class="alert alert-warning">
         <strong>Désolé</strong> Pas encore d'enregistrement !
@@ -69,8 +90,9 @@ CampusManager
         <thead class="thead-light">
               <tr>
                 <th scope="col">#</th>
+                <th scope="col" >Institut</th>
                 <th scope="col" >Département</th>
-                 <th scope="col" >Action</th>
+                <th scope="col" >Action</th>
               </tr>
         </thead>
 
@@ -79,7 +101,8 @@ CampusManager
               @foreach($departement as $d)
                   <tr>
                     <th scope="row center">1</th>
-                    <td>{{ $d->intitule}}</td>
+                    <td>{{ $d->i}}</td>
+                    <td>{{ $d->d}}</td>
                   
                     <td> <a href="#" class="btn btn-danger btn-block">
                     Supprimer</a>

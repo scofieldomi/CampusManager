@@ -9,6 +9,8 @@ class Cycle extends Model
     //
     protected $fillable = ['id','intitule'];
 
+    
+
     public function resultats() {
 
      return $this->hasMany('App\Resultat');
