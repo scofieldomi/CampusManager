@@ -68,7 +68,7 @@ CampusManager
 
               <div class="col-sm-4">
                 <label for="nom">Institut</label>
-                  <select name="institut" class="form-control" require>
+                  <select name="institut" class="form-control" id="institut">
                     <option value="+47">Choisir...</option>
                     @foreach($institut as $i)
                     <option value="{{$i->intitule}}">{{ $i->intitule}}</option>
@@ -77,12 +77,9 @@ CampusManager
                 </div>
 
               <div class="col-sm-4">
-                <label for="nom">Département</label>
-                  <select name="departement" class="form-control">
-                    <option value="+47">Choisir...</option>
-                    @foreach($departement as $d)
-                    <option value="{{$d->intitule}}">{{ $d->intitule}}</option>
-                    @endforeach
+                <label for="nom">Départementgg</label>
+                  <select name="departement" class="form-control" id="departement">
+                    <option value="Choisir...">Choisir...</option>
                   </select>
                 </div>
 
@@ -140,16 +137,18 @@ CampusManager
   </div>
 
 
+          </div>
+        </div>
     </div>
-  </div>
-</div>
 </div>
 
  <hr class="mb-2">
 
-<div class="resultat">
-  
-    
+  <div class="row justify-content-center">
+
+        <div class="col-sm-12 resultat">
+          
+        </div>
 
 </div>
 
@@ -164,22 +163,99 @@ CampusManager
 
 <script type="text/javascript">
 
- $('#resultatDeliberation').on('submit', function(e){
-  e.preventDefault() ;
-  var url = $(this).attr('action') ;
-  var data = $(this).serializeArray() ;
-  var get = $(this).attr('method') ;
-   $.ajax({
-      type : get,
-      url :  url,
-      data : data
- 
-   }).done(function(data){
-    console.log(data);
-    $('.resultat').html(data) ;
+document.addEventListener('DOMContentLoaded',function() {
+    document.querySelector('select[name="institut"]').onchange=changeEventHandler;
+},false);
 
-   })
+function changeEventHandler(event) {
+          // You can use “this” to refer to the selected element.
+
+           $.ajax({
+              type : 'get',
+              url :  "{{ url('departement') }}" ,
+              data : {'institut': event.target.value },
+              dataType : 'json',
+           }).done(function(data){
+
+            $('#departement').empty();
+            $.each(data.dep, function(i,d){
+
+              $('#departement').append($('<option>',{
+                
+                 value:d.intitule,
+                 text:d.intitule
+
+                }));
+
+            })
+
+       })
+
+}
+
+
+
+
+ $('#resultatDeliberation').on('submit', function(e){
+   e.preventDefault() ;
+      $(".resultat").progressBarTimer({
+      timeLimit: 5,
+      warningThreshold: 3,
+      autoStart: true, 
+      smooth: true, 
+      label: { show: true, type: 'percent'},
+        onFinish  : function () {
+        
+         }
+      }).start()
+
  })
+
+
+     $('#resultatDeliberation').on('submit', function(e){
+      e.preventDefault() ;
+      var url = $(this).attr('action') ;
+      var data = $(this).serializeArray() ;
+      var get = $(this).attr('method') ;
+       $.ajax({
+          type : get,
+          url :  url,
+          data : data
+     
+       }).done(function(data){
+        console.log(data);
+        $('.resultat').html(data) ;
+
+       })
+     })
+
+
+
+
+ // $(document).on('click','.pagination a', function(e){
+
+//  e.preventDefault() ;
+// var page = $(this).attr('href').split('page=')[1] ;
+
+// getStudent(page,$('#mod').val(), $('#annee').val()) ;
+
+// })
+
+// function getStudent(page, mod, annee){
+
+// var url = "{{ route('note.getStudentPagination') }}" ;
+
+//    $.ajax({
+//       type : 'get',
+//       url :  url+'?page='+page,
+//       data : {'mod': mod , 'annee':annee}
+//    }).done(function(data){
+ 
+//     $('.resultat').html(data) ;
+
+//    })
+
+// }
 
 
 </script>

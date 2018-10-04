@@ -266,3 +266,14 @@ Route::post('/deliberation/impression', [
 
     'as'   => 'deliberation.imprimer'
 ]);
+
+
+Route::get('/departement', [
+
+    'uses' => 'rechercheSousElementsController@departement',
+
+    'as'   => 'departement'
+]);
+
+
+

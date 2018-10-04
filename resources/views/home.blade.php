@@ -26,12 +26,14 @@ CampusManager
                   </div>
         </div>
 
- <div class="col-md-6">
-        <div id="tuto">
-        <p v-text="citation"></p>
-       </div>
+                   <div class="col-md-6">
+                          <div id="tuto">
+                          <p v-text="citation"></p>
+                         </div>
 
-  </div>     
+                          <div id="countdown"></div>
+
+                    </div>     
 
     </div>
 </div>
@@ -41,14 +43,26 @@ CampusManager
 
 <script type="text/javascript">
 
-var vm = new Vue({
- el: '#tuto',
- data: {
-     citation: '"Après  le  pain,  l’éducation est  le premier  besoin d’un peuple !"',
-   }
-});
+  $("#countdown").progressBarTimer({
+  timeLimit: 3,
+  autoStart: false, 
+  smooth: true, 
+  label: { show: true, type: 'percent'},
+    onFinish  : function () { 
+
+      console.log('completed') 
+
+    var vm = new Vue({
+     el: '#tuto',
+     data: {
+         citation: '"Après  le  pain,  l’éducation est  le premier  besoin d’un peuple !"',
+       }
+    });
 
 setTimeout(function(){ vm.citation = 'Mon autre texte'; }, 3000);
+
+    }
+  }).start()
 
 </script>
 

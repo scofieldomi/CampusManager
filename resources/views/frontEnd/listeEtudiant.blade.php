@@ -105,8 +105,8 @@ CampusManager
         <thead class="thead-light">
               <tr>
                 <th>#</th>
-                <th><strong>Année Académique </strong>  </th>
-                <th><strong>Matricule</strong>  </th>
+                <th><strong>Année Académique </strong></th>
+                <th><strong>Matricule</strong></th>
                 <th><strong>Nom</strong></th>
                 <th><strong>Prénom</strong> </th>  
                 <th><strong>Cycle</strong></th> 
@@ -127,8 +127,8 @@ CampusManager
                     <td><strong>{{ $e->prenom}}</strong></td>
                     <td><strong>{{ $e->c}}</strong></td>
                     <td><strong>{{ $e->f}}</strong></td>
-                    <td> 
 
+                    <td> 
                      <a href="#" class="btn btn-success btn-block">
                     details</a>
                    </td>
@@ -141,7 +141,7 @@ CampusManager
                    <td>
                     <a href="#" class="btn btn-danger btn-block">
                     Supprimer</a>
-                     </td>
+                   </td>
 
                   </tr>
                 @endforeach

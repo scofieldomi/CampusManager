@@ -7,8 +7,8 @@
     <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('css/navBar.css') }}" type="text/css" rel="stylesheet">
 
-    <!-- Sweet Alert -->
-<!-- 	<link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css"> -->
+  <!-- Sweet Alert -->
+  <!-- 	<link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css"> -->
 	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" /> -->
     <link href="{{ asset('css/sweetalert.min.css') }}" rel="stylesheet">
 
@@ -22,6 +22,13 @@
    <link href="{{ asset('css/mdb/css/bootstrap.min.css') }}" rel="stylesheet">
    <link href="{{ asset('css/mdb/css/mdb.min.css') }}" rel="stylesheet">
    <link href="{{ asset('css/mdb/css/style.css') }}" rel="stylesheet">
+
+    <!-- Progress bar -->
+
+ <link href="{{ asset('css/bootstrap-4.0.0/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
+
+
 
 
 

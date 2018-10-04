@@ -39,7 +39,7 @@
 
 <!--Navbar -->
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color">
-      <a class="navbar-brand" href="{{ route('home') }}"></a>
+      <a class="navbar-brand" href="{{ route('home') }}">Accueil</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3"
         aria-controls="navbarSupportedContent-3" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -55,7 +55,6 @@
           <a class="dropdown-item" href="{{ route('etudiant.index') }}">Inscrire un étudiant</a>
              <a class="dropdown-item" href="#">Rechercher un étudiant</a>
           <a class="dropdown-item" href="{{ route('etudiant.liste') }}">Liste des étudiants</a>
-
          </div>
       </li>
 
