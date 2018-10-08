@@ -4,6 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Cycle;
+use App\Filiere;
+use App\Semestre;
+use App\Annee;
+use App\Inscription;
+use App\Unite;
+use App\Etudiant;
+use App\Institut;
+use App\Departement;
+
 class enseignantController extends Controller
 {
     /**
@@ -14,14 +24,11 @@ class enseignantController extends Controller
     public function index()
     {
         //
-                $institut = Institut::first();
+        $institut = Institut::All();
+        $departement = Departement::All() ;
 
-        if(!$institut==null){
-          $institut = $institut->paginate(2);
-          return view('frontEnd.institut', compact('institut')) ;
-        } else {
-        $institut = null ;
-        return view('frontEnd.institut', compact('institut')) ;  }
+        return view('frontEnd.enseignant', compact('institut','departement')) ;
+
     }
 
     /**
@@ -43,6 +50,7 @@ class enseignantController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**

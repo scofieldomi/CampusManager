@@ -23,6 +23,8 @@ Auth::routes();
 //Route::post('/logout', 'Auth\LoginController@logout')->name('logout' );
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Gestion des unités des année
+
 Route::get('/annee/index', [
 
     'uses' => 'AnneeController@index',
@@ -36,6 +38,8 @@ Route::post('/annee/store', [
 
     'as'   => 'annee.store'
 ]);
+
+//Gestion des unités des instituts
 
 Route::get('/institut/index', [
 
@@ -52,6 +56,7 @@ Route::post('/institut/store', [
     'as'   => 'institut.store'
 ]);
 
+//Gestion des unités des departements
 
 Route::get('/departement/index', [
 
@@ -68,9 +73,7 @@ Route::post('/departement/store', [
     'as'   => 'departement.store'
 ]);
 
-
-
-
+//Gestion des unités des cycles
 
 
 Route::get('/cycle/index', [
@@ -88,6 +91,7 @@ Route::post('/cycle/store', [
     'as'   => 'cycle.store'
 ]);
 
+//Gestion des unités des filières
 
 Route::get('/filiere/index', [
 
@@ -104,6 +108,7 @@ Route::post('/filiere/store', [
     'as'   => 'filiere.store'
 ]);
 
+//Gestion des unités des semestres
 
 Route::get('/semestre/index', [
 
@@ -120,6 +125,8 @@ Route::post('/semestre/store', [
     'as'   => 'semestre.store'
 ]);
 
+//Gestion des unités des sessions
+
 Route::get('/session/index', [
 
     'uses' => 'sessionController@index',
@@ -134,6 +141,7 @@ Route::post('/session/store', [
     'as'   => 'session.store'
 ]);
 
+//Gestion des unités de valeur
 
 Route::get('/uv/index', [
 
@@ -149,6 +157,8 @@ Route::post('/uv/store', [
     'as'   => 'uv.store'
 ]);
 
+//Gestion des modules
+
 
 Route::get('/module/index', [
 
@@ -163,6 +173,8 @@ Route::post('/module/store', [
 
     'as'   => 'module.store'
 ]);
+
+//Gestion des étudiants
 
 Route::get('/etudiant/index', [
 
@@ -192,6 +204,7 @@ Route::get('/etudiant/liste', [
     'as'   => 'etudiant.liste'
 ]);
 
+//Gestion des notes
 
 Route::get('/note/index', [
 
@@ -229,6 +242,8 @@ Route::get('/notification/{type}/{message}', [
     'as'   => 'sweet.notification'
 ]);
 
+//Gestion de la deliberation
+
 Route::get('/deliberation/index', [
 
     'uses' => 'deliberationController@index',
@@ -251,6 +266,7 @@ Route::get('/deliberation/rechercheResultat', [
     'as'   => 'deliberation.rechercheResultat'
 ]);
 
+//Gestion des impressions
 
 Route::get('/pdf/getPDF', [
 
@@ -275,5 +291,20 @@ Route::get('/departement', [
     'as'   => 'departement'
 ]);
 
+// Gestion des enseignants
+
+Route::get('/enseignant/index', [
+
+    'uses' => 'enseignantController@index',
+
+    'as'   => 'enseignant.index'
+]);
+
+Route::post('/enseignant/store', [
+
+    'uses' => 'enseignantController@store',
+
+    'as'   => 'enseignant.store'
+]);
 
 

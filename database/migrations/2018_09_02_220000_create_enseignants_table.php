@@ -18,6 +18,8 @@ class CreateEnseignantsTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('institut_id')->unsigned()->nullable();
             $table->integer('departement_id')->unsigned()->nullable();
+            $table->string('civilite')->nullable();
+            $table->string('grade')->nullable();
             $table->string('nom');
             $table->string('prenom');
             $table->string('telephone');
@@ -41,7 +43,7 @@ class CreateEnseignantsTable extends Migration
                       ->onDelete('restrict')
                       ->onUpdate('restrict');
 
-            $table->timestamps();
+            
         });
     }
 

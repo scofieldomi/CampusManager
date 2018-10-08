@@ -36,7 +36,7 @@ class rechercheSousElementsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function cycle(Request $request)
     {
         //
     }
@@ -47,7 +47,7 @@ class rechercheSousElementsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function filiere(Request $request)
     {
         //
     }
@@ -58,7 +58,7 @@ class rechercheSousElementsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function semestre(Request $request)
     {
         //
     }
@@ -69,7 +69,7 @@ class rechercheSousElementsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function module(Request $request)
     {
         //
     }

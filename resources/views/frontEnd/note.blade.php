@@ -68,7 +68,7 @@ CampusManager
 
               <div class="col-sm-4">
                 <label for="nom">Institut</label>
-                  <select name="institut" class="form-control">
+                  <select name="institut" class="form-control" id="institut">
                     <option value="+47">Choisir...</option>
                     @foreach($institut as $i)
                     <option value="{{$i->intitule}}">{{ $i->intitule}}</option>
@@ -78,11 +78,8 @@ CampusManager
 
               <div class="col-sm-4">
                 <label for="nom">Département</label>
-                  <select name="departement" class="form-control">
+                  <select name="departement" class="form-control" id="departement">
                     <option value="+47">Choisir...</option>
-                    @foreach($departement as $d)
-                    <option value="{{$d->intitule}}">{{ $d->intitule}}</option>
-                    @endforeach
                   </select>
                 </div>
 
@@ -178,6 +175,38 @@ CampusManager
 
    })
  })
+
+// Recherche des sous elements combo
+document.addEventListener('DOMContentLoaded',function() {
+    document.querySelector('select[name="institut"]').onchange=changeEventHandler;
+},false);
+
+function changeEventHandler(event) {
+          // You can use “this” to refer to the selected element.
+
+           $.ajax({
+              type : 'get',
+              url :  "{{ url('departement') }}" ,
+              data : {'institut': event.target.value },
+           }).done(function(data){
+
+            $('#departement').empty();
+            $.each(data.dep, function(i,d){
+
+              $('#departement').append($('<option>',{
+                
+                 value:d.intitule,
+                 text:d.intitule
+
+                }));
+
+            })
+
+       })
+
+}
+
+
 
 
 // $(document).on('click','.pagination a', function(e){

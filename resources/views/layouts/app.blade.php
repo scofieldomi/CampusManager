@@ -63,7 +63,7 @@
           Enseignants
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Ajouter un enseignant</a>
+          <a class="dropdown-item" href="{{ route('enseignant.index') }}">Ajouter un enseignant</a>
           <a class="dropdown-item" href="#">Liste des enseignants</a>
           <a class="dropdown-item" href="#">Assigner un module à un enseignant</a>
           <a class="dropdown-item" href="#">Envoyer un email à un enseignant</a>

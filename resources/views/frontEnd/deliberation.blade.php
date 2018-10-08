@@ -195,21 +195,20 @@ function changeEventHandler(event) {
 
 
 
-
- $('#resultatDeliberation').on('submit', function(e){
-   e.preventDefault() ;
-      $(".resultat").progressBarTimer({
-      timeLimit: 5,
-      warningThreshold: 3,
-      autoStart: true, 
-      smooth: true, 
-      label: { show: true, type: 'percent'},
-        onFinish  : function () {
+ // $('#resultatDeliberation').on('submit', function(e){
+ //   e.preventDefault() ;
+ //      $(".resultat").progressBarTimer({
+ //      timeLimit: 5,
+ //      warningThreshold: 3,
+ //      autoStart: true, 
+ //      smooth: true, 
+ //      label: { show: true, type: 'percent'},
+ //        onFinish  : function () {
         
-         }
-      }).start()
+ //         }
+ //      }).start()
 
- })
+ // })
 
 
      $('#resultatDeliberation').on('submit', function(e){

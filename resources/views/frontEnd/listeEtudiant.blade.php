@@ -154,7 +154,6 @@ CampusManager
                       Vous n'avez pas encore d'enregistrement
                     </div>
 
-     
                 @endif
 
         </div>
