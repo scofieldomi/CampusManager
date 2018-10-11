@@ -11,8 +11,8 @@ CampusManager
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Gestion des étudiants</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Inscrire un étudiant</li>
+    <li class="breadcrumb-item"><a href="#">Gestion des enseignants</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Ajouter un enseignant</li>
   </ol>
 </nav>
           <!-- <div class="alert alert-success">                 
@@ -26,7 +26,7 @@ CampusManager
                    <div class="col-sm-8">
                         <p class="lead">
                             <div class="alert alert-primary" role="alert">
-                                 Ajouter les étudiants inscrits dans votre université 
+                                 Ajouter les enseignants de votre université 
                             </div>
                         </p>
                     </div>
@@ -39,6 +39,17 @@ CampusManager
       </div>
     <hr class="mb-3">
 
+          <div class="row justify-content-center">
+                   <div class="col-sm-8">
+                        <p class="lead">
+                            <div class="alert alert-dange" role="alert">
+                              <span style="font-weight: bold;"  >NB : </span>Veuillez ne pas préciser l'institut et le département pour les enseignants vacataires.
+                            </div>
+                        </p>
+                    </div>
+                </div>
+
+
     <div class="row justify-content-center">
         <div class="col-md-6">
 
@@ -47,7 +58,7 @@ CampusManager
 
                          <div class="card-body">
 
-                  <form class="needs-validation" method="POST" action="{{ route('etudiant.store') }}">
+                  <form class="needs-validation" method="POST" action="{{ route('enseignant.store') }}" enctype="multipart/form-data">
 
                             {!! csrf_field() !!}
 
@@ -57,7 +68,7 @@ CampusManager
                 <div class="col-sm-4">
                 <label for="nom">Institut</label>
                   <select name="institut" class="form-control" id="institut">
-                    <option value="+47">Choisir...</option>
+                    <option value="">Choisir...</option>
                     @foreach($institut as $i)
                     <option value="{{$i->intitule}}">{{ $i->intitule}}</option>
                     @endforeach
@@ -67,7 +78,7 @@ CampusManager
                 <div class="col-sm-4">
                 <label for="nom">Département</label>
                   <select name="departement" class="form-control" id="departement">
-                    <option value="+47">Choisir...</option>
+                    <option value="">Choisir...</option>
                   </select>
                 </div>
        </div>
@@ -77,20 +88,20 @@ CampusManager
                                 <div class="col-md-8 mb-3">
                                 
                        
-                                <label for="nom">Civilité</label>
-                                  <select name="departement" class="form-control">
-                                    <option value="+47">Choisir...</option>
-                                    <option value="+47">Monsieur</option>
-                                    <option value="+47">Madame</option>
+                                <label for="civilite">Civilité</label>
+                                  <select name="civilite" class="form-control">
+                                    <option value="">Choisir...</option>
+                                    <option value="Monsieur">Monsieur</option>
+                                    <option value="Madame">Madame</option>
                                   </select>
 
-                                 <label for="nom">Grade</label>
-                                  <select name="departement" class="form-control">
-                                    <option value="+47">Choisir...</option>
-                                    <option value="+47">Assistant</option>
-                                    <option value="+47">Maître Assistant</option>
-                                    <option value="+47">Maître de Conférence</option>
-                                    <option value="+47">Professeur titulaire</option>
+                                 <label for="grade">Grade</label>
+                                  <select name="grade" class="form-control">
+                                    <option value="">Choisir...</option>
+                                    <option value="Assistant">Assistant</option>
+                                    <option value="Maître Assistant">Maître Assistant</option>
+                                    <option value="Maître de Conférence">Maître de Conférence</option>
+                                    <option value="Professeur titulaire">Professeur titulaire</option>
                                   </select>
                              
 
@@ -101,10 +112,13 @@ CampusManager
                                   <input name="prenom" type="text" class="form-control" id="" placeholder="" value="" autocomplete="on">
                                    
                                   <label for="telephone">E-mail</label> 
-                                  <input name="telephone" type="email" class="form-control" id="" placeholder="" value="" autocomplete="on">
+                                  <input name="email" type="email" class="form-control" id="" placeholder="" value="" autocomplete="on">
                                   
                                   <label for="telephone">Telephone</label> 
-                                  <input name="telephone" type="text" class="form-control" id="" placeholder="" value="" autocomplete="on">
+                                  <input name="telephone" type="text" class="form-control" id="" placeholder="Ex: 0022675507605" value="" autocomplete="on">
+                                  
+                                  <label for="cv">Curriculum Vitae</label> 
+                                  <input name="cv" type="file" class="form-inline" id="" value="">
                                   
                                 </div> 
                                 

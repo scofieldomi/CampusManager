@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Alert ;
+
 use App\Cycle;
 use App\Filiere;
 use App\Semestre;
@@ -11,6 +13,7 @@ use App\Annee;
 use App\Inscription;
 use App\Unite;
 use App\Etudiant;
+use App\Enseignant;
 use App\Institut;
 use App\Departement;
 
@@ -50,6 +53,68 @@ class enseignantController extends Controller
     public function store(Request $request)
     {
         //
+
+        $uniqueFileName  ;
+        $path ;
+
+        if($request->institut != "" || $request->departement != ""){
+
+        $institut = Institut::where('intitule', '=' ,$request->institut)->first();
+        $institut_id = $institut->id ;
+
+        $departement = Departement::where('intitule', '=' ,$request->departement)->first();
+        $departement_id = $departement->id ;
+
+        }
+        else {
+
+            $institut_id = null ;
+            $departement_id = null ;
+
+        }
+
+        $enseignant = new Enseignant ;
+        $enseignant->institut_id = $institut_id ;
+        $enseignant->departement_id = $departement_id ;
+        $enseignant->nom = $request->nom ;
+        $enseignant->prenom = $request->prenom ;
+        $enseignant->telephone = $request->telephone ;
+        $enseignant->email = $request->email ;
+        $enseignant->civilite = $request->civilite ;
+        $enseignant->grade = $request->grade ;
+
+        // sauvegarde du fichier PDF dans public/uploads/pdfs
+
+        if($request->file('cv') != null){
+
+        $uniqueFileName = uniqid() . $request->file('cv')->getClientOriginalName() . '.' . $request->file('cv')->getClientOriginalExtension();
+
+        $path = base_path() . '/public/uploads/pdfs/';
+        
+        $request->file('cv')->move($path, public_path('CV') . $uniqueFileName);
+
+        $enseignant->cv = public_path("uploads\pdfs\\") . $uniqueFileName ;
+
+        }else {
+
+             $enseignant->cv = null ;
+
+        }
+
+     $enseignant->save() ;
+
+     Alert::success('Enseignant bien enregistré.','Confirmation')->autoclose(2500);
+
+    if($request->institut != "" || $request->departement != ""){
+
+     return redirect()->route('enseignant.index')->withOk("L'Enseignant ".$request->prenom." ".$request->nom.", à bien été enregistré à ".$request->institut." dans le département ".$request->departement.".");
+    
+        }
+        else {
+
+     return redirect()->route('enseignant.index')->withOk("L'Enseignant ".$request->prenom." ".$request->nom.", à bien été enregistré en tant que vacataire");
+
+        }
 
     }
 

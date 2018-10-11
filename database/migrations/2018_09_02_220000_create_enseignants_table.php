@@ -24,6 +24,10 @@ class CreateEnseignantsTable extends Migration
             $table->string('prenom');
             $table->string('telephone');
             $table->string('email');
+            $table->string('cv')->nullable();
+
+   
+            $table->timestamps();
 
             $table->foreign('user_id')
                       ->references('id')
@@ -42,6 +46,8 @@ class CreateEnseignantsTable extends Migration
                       ->on('departements')
                       ->onDelete('restrict')
                       ->onUpdate('restrict');
+
+
 
             
         });
