@@ -59,7 +59,11 @@
 
                   <hr class="mb-1">
 
-                  <span> Unité de formation et de recherche en science et technologie (UFR/ST)</span>
+                  <span> {{ $institut }}</span>
+
+                   <hr class="mb-1">
+
+                  <span> {{ $departement }}</span>
 
             
         </div>

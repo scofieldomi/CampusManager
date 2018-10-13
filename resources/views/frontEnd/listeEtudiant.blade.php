@@ -130,18 +130,55 @@ CampusManager
 
                     <td> 
                      <a href="#" class="btn btn-success btn-block">
-                    details</a>
+                    <i class="fa fa-address-card"></i></a>
                    </td>
 
                    <td> 
                    <a href="#" class="btn btn-primary btn-block">
-                    Modifier</a>
+                    <i class="fa fa-edit"></i></a>
                    </td>
 
                    <td>
-                    <a href="#" class="btn btn-danger btn-block">
-                    Supprimer</a>
+                    <a href="#" class="btn btn-danger btn-block" data-toggle="modal" data-target="#myMo" data-myvalue="{{ $e->id }}" data-myvar="{{ $e->nom }}">
+                    <i class="fa fa-user-times"></i></a>
+
+
+                    <div class="modal fade" id="myMo" tabIndex="-1">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header"> 
+                            <h4 class="modal-title">Confirmation</h4>
+                            <button type="button" class="close" data-dismiss="modal">
+                              ×
+                            </button>
+                         
+                          </div>
+                          <div class="modal-body">
+
+                            <span id="modal-myvalue"></span> <span id="modal-myvar"></span> <span id="modal-bb"></span>
+                            <p class="lead">
+                              <i class="fa fa-question-circle fa-lg"></i>  
+                              Voulez-vous vraiment supprimer cet étudiant ?
+                            </p>
+                          </div>
+                          <div class="modal-footer">
+                            <form method="POST" action="#">
+                              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                              <input type="hidden" name="_method" value="DELETE">
+                              <button type="button" class="btn btn-primary"
+                                      data-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-danger">
+                                <i class="fa fa-times-circle"></i> Yes
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
                    </td>
+
 
                   </tr>
                 @endforeach
@@ -184,7 +221,7 @@ $(document).ready(function() {
      "sZeroRecords":  "Aucun &eacute;tudiant &agrave; afficher",
      "sLengthMenu":   "Afficher _MENU_",
      "sInfo": "_START_ &agrave; _END_ sur _TOTAL_",
-     "sSearch":       "Rechercher : ",
+     "sSearch":       "Rechercher ",
       "sInfoFiltered": "",
       "sInfoPostFix":  "",
       "sUrl":          "",
@@ -206,6 +243,30 @@ $(document).ready(function() {
       );
 } );
 
+
+// data-* attributes to scan when populating modal values
+var ATTRIBUTES = ['myvalue', 'myvar'];
+
+$('[data-toggle="modal"]').on('click', function (e) {
+  // convert target (e.g. the button) to jquery object
+  var $target = $(e.target);
+  // modal targeted by the button
+  var modalSelector = $target.data('target');
+  
+  // iterate over each possible data-* attribute
+  ATTRIBUTES.forEach(function (attributeName) {
+    // retrieve the dom element corresponding to current attribute
+    var $modalAttribute = $(modalSelector + ' #modal-' + attributeName);
+    var dataValue = $target.data(attributeName);
+    
+    // if the attribute value is empty, $target.data() will return undefined.
+    // In JS boolean expressions return operands and are not coerced into
+    // booleans. That way is dataValue is undefined, the left part of the following
+    // Boolean expression evaluate to false and the empty string will be returned
+    $modalAttribute.text(dataValue || ''); 
+  });
+
+});
 
 </script>
 

@@ -8,37 +8,38 @@ CampusManager
 <div class="container">
 
       <div class=" text-center">
- 
+
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Délibération</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Effectuer une délibération</li>
+            <li class="breadcrumb-item"><a href="#">Gestion des enseignants</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('enseignant.liste', ['liste'=>'module']) }}">Assigner un module à un enseignants </a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $enseignant->nom }} {{ $enseignant->prenom }}</li>
           </ol>
         </nav>
-              <!--     <div class="alert alert-success">
-                <h2>Délibération</h2>
-                  </div>  -->
+<!-- 
+                  <div class="alert alert-success">
+                <h2>Saisie des notes</h2>
+                  </div>  
+ -->
                 <br>
-
-                <div class="row justify-content-center">
+                 <div class="row justify-content-center">
                  <div class="col-sm-8">
-                      <p class="lead">
-                          <div class="alert alert-primary" role="alert">
-                              Effectuez une délibérarion ici
-                          </div>
-                      </p>
+                <p class="lead">
+                    <div class="alert alert-primary" role="alert">
+                      Choisissez les modules enseignés par l'enseignant {{ $enseignant->nom }} {{ $enseignant->prenom }}
+                    </div>
+                </p>
                   </div>
                 </div>
-
       </div>
   
         <hr class="mb-4">
-    <form class="needs-validation" method="get" action="{{ url('/deliberation/rechercheResultat') }}"  id="resultatDeliberation">
+    <form class="needs-validation" method="get" action="{{ url('/note/rechercheEtudiant') }}" id="saisieNote">
                             
                             {!! csrf_field() !!}
 
  <div class="card">
-                    <div class="card-header">Rechercher des Etudiants</div>
+                    <div class="card-header">Critères de recherche</div>
 
                          <div class="card-body">
 
@@ -51,20 +52,8 @@ CampusManager
                     <option value="{{$a->intitule}}">"{{$a->intitule}}"</option>
                      @endforeach
                   </select>
-                </div>
-
-                <div class="col-sm-4">
                </div>
 
-
-                 <div class="col-sm-4">
-                <label for="nom">Session</label>
-                  <select name="session" class="form-control" id="session">
-                     @foreach($session as $s)
-                    <option value="{{$s->intitule}}">"{{$s->intitule}}"</option>
-                     @endforeach
-                  </select>
-                </div>
 
               <div class="col-sm-4">
                 <label for="nom">Institut</label>
@@ -79,7 +68,7 @@ CampusManager
               <div class="col-sm-4">
                 <label for="nom">Département</label>
                   <select name="departement" class="form-control" id="departement">
-                    <option value="Choisir...">Choisir...</option>
+                    <option value="+47">Choisir...</option>
                   </select>
                 </div>
 
@@ -93,8 +82,6 @@ CampusManager
                   </select>
                 </div>
 
-</div>
- <div class="row justify-content-center">
 
                <div class="col-sm-4">
                 <label for="nom">Filière</label>
@@ -116,39 +103,26 @@ CampusManager
                   </select>
                 </div>
 
-<div class="col-sm-4">
 
- <span for="compenseNote" style="padding:2px;">Compenser à partir de </span> 
- <input name="compenseNote" type="text" class="form-control" id="" placeholder="ex : 9.90" value="" autocomplete="on" style="margin-top:10px;">
-  
-</div>          
-
-
-</div>
- <div class="row justify-content-center">
               <div class="col-sm-4 py-3">
                 <button type="submit" class="btn btn-success btn-block">
-                    Délibérer </button>
+                    Rechercher</button>
                </div>
-</div>
-
             </form>
         </div>
   </div>
 
 
-          </div>
-        </div>
     </div>
+  </div>
+</div>
 </div>
 
  <hr class="mb-2">
 
-  <div class="row justify-content-center">
 
-        <div class="col-sm-12 resultat">
-          
-        </div>
+<div class="resultat">
+  
 
 </div>
 
@@ -163,6 +137,24 @@ CampusManager
 
 <script type="text/javascript">
 
+ $('#saisieNote').on('submit', function(e){
+  e.preventDefault() ;
+  var url = $(this).attr('action') ;
+  var data = $(this).serializeArray() ;
+  var get = $(this).attr('method') ;
+   $.ajax({
+      type : get,
+      url :  url,
+      data : data
+ 
+   }).done(function(data){
+    console.log(data);
+    $('.resultat').html(data) ;
+
+   })
+ })
+
+// Recherche des sous elements combo
 document.addEventListener('DOMContentLoaded',function() {
     document.querySelector('select[name="institut"]').onchange=changeEventHandler;
 },false);
@@ -174,7 +166,6 @@ function changeEventHandler(event) {
               type : 'get',
               url :  "{{ url('departement') }}" ,
               data : {'institut': event.target.value },
-              dataType : 'json',
            }).done(function(data){
 
             $('#departement').empty();
@@ -195,69 +186,7 @@ function changeEventHandler(event) {
 
 
 
- // $('#resultatDeliberation').on('submit', function(e){
- //   e.preventDefault() ;
- //      $(".resultat").progressBarTimer({
- //      timeLimit: 5,
- //      warningThreshold: 3,
- //      autoStart: true, 
- //      smooth: true, 
- //      label: { show: true, type: 'percent'},
- //        onFinish  : function () {
-        
- //         }
- //      }).start()
-
- // })
-
-
-     $('#resultatDeliberation').on('submit', function(e){
-      e.preventDefault() ;
-      var url = $(this).attr('action') ;
-      var data = $(this).serializeArray() ;
-      var get = $(this).attr('method') ;
-       $.ajax({
-          type : get,
-          url :  url,
-          data : data
-     
-       }).done(function(data){
-        console.log(data);
-        $('.resultat').html(data) ;
-
-       })
-     })
-
-
-
-
- // $(document).on('click','.pagination a', function(e){
-
-//  e.preventDefault() ;
-// var page = $(this).attr('href').split('page=')[1] ;
-
-// getStudent(page,$('#mod').val(), $('#annee').val()) ;
-
-// })
-
-// function getStudent(page, mod, annee){
-
-// var url = "{{ route('note.getStudentPagination') }}" ;
-
-//    $.ajax({
-//       type : 'get',
-//       url :  url+'?page='+page,
-//       data : {'mod': mod , 'annee':annee}
-//    }).done(function(data){
- 
-//     $('.resultat').html(data) ;
-
-//    })
-
-// }
-
 
 </script>
-
 
 @endsection

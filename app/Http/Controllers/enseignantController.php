@@ -90,7 +90,7 @@ class enseignantController extends Controller
         $uniqueFileName = uniqid() . $request->file('cv')->getClientOriginalName() . '.' . $request->file('cv')->getClientOriginalExtension();
 
         $path = base_path() . '/public/uploads/pdfs/';
-        
+
         $request->file('cv')->move($path, public_path('CV') . $uniqueFileName);
 
         $enseignant->cv = public_path("uploads\pdfs\\") . $uniqueFileName ;
@@ -105,16 +105,67 @@ class enseignantController extends Controller
 
      Alert::success('Enseignant bien enregistré.','Confirmation')->autoclose(2500);
 
-    if($request->institut != "" || $request->departement != ""){
+     if($request->institut != "" || $request->departement != ""){
 
      return redirect()->route('enseignant.index')->withOk("L'Enseignant ".$request->prenom." ".$request->nom.", à bien été enregistré à ".$request->institut." dans le département ".$request->departement.".");
     
         }
-        else {
+        else{
 
      return redirect()->route('enseignant.index')->withOk("L'Enseignant ".$request->prenom." ".$request->nom.", à bien été enregistré en tant que vacataire");
 
         }
+
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function liste($liste)
+    {
+
+     $enseignant= Enseignant::All() ;
+     $institut = Institut::All();
+
+     $enseignant= Enseignant::leftJoin('departements', 'enseignants.departement_id', '=' ,'departements.id')
+                        ->leftJoin('instituts','enseignants.institut_id','=','instituts.id')
+                        ->select('enseignants.id','enseignants.nom','enseignants.prenom','instituts.intitule as i','departements.intitule as d')
+                        ->OrderBy('enseignants.nom','asc')
+                        ->OrderBy('enseignants.prenom','asc')
+                        ->get(); 
+
+      $i = 1 ;
+
+      if($liste != "module") return view('frontEnd.listeEnseignant',compact('enseignant','i')) ;
+      else return view('frontEnd.assignerModuleEnseignant',compact('enseignant','i','institut')) ;
+
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function storeModule($id)
+    {
+
+      $annee = Annee::OrderBy('annees.intitule','desc')->get() ;
+      $institut = Institut::All() ;
+      $departement = Departement::All() ;
+      $cycle = Cycle::All();
+      $filiere = Filiere::All();
+      $semestre = Semestre::All();
+      $enseignant = Enseignant::find($id) ;
+
+      // $etudiant = array() ;
+
+      return view('frontEnd.moduleEnseignant', compact('annee','cycle','filiere','semestre','institut','departement','enseignant')) ;
 
     }
 

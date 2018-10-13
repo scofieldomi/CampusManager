@@ -15,15 +15,20 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Auth::routes();
 
+
+Route::group(['middleware'=>'auth'], function() {
+
+// Début middleware auth
 
 //Route::resource('post', 'PostController', ['except' => ['show', 'edit', 'update']]);
 
-Auth::routes();
-//Route::post('/logout', 'Auth\LoginController@logout')->name('logout' );
+//Gestion des unités des année
+
+    //Route::post('/logout', 'Auth\LoginController@logout')->name('logout' );
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Gestion des unités des année
 
 Route::get('/annee/index', [
 
@@ -307,4 +312,29 @@ Route::post('/enseignant/store', [
     'as'   => 'enseignant.store'
 ]);
 
+Route::get('/enseignant/liste/{liste}', [
 
+    'uses' => 'enseignantController@liste',
+
+    'as'   => 'enseignant.liste'
+]);
+
+Route::get('/enseignant/module/{id}', [
+
+    'uses' => 'enseignantController@storeModule',
+
+    'as'   => 'enseignant.storeModule'
+]);
+
+
+
+
+
+
+
+
+
+
+// Fin du middleware auth
+
+}) ;

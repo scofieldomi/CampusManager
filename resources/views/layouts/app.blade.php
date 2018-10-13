@@ -53,7 +53,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{{ route('etudiant.index') }}">Inscrire un étudiant</a>
-             <a class="dropdown-item" href="#">Rechercher un étudiant</a>
+             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#myMod">Rechercher un étudiant</a>
+
+
           <a class="dropdown-item" href="{{ route('etudiant.liste') }}">Liste des étudiants</a>
          </div>
       </li>
@@ -63,14 +65,14 @@
           Enseignants
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+         
           <a class="dropdown-item" href="{{ route('enseignant.index') }}">Ajouter un enseignant</a>
-          <a class="dropdown-item" href="#">Liste des enseignants</a>
-          <a class="dropdown-item" href="#">Assigner un module à un enseignant</a>
+          <a class="dropdown-item" href="{{ route('enseignant.liste', ['liste'=>'rien']) }}">Liste des enseignants</a>
+          <a class="dropdown-item" href="{{ route('enseignant.liste', ['liste'=>'module']) }}">Assigner un module à un enseignant</a>
           <a class="dropdown-item" href="#">Envoyer un email à un enseignant</a>
          
         </div>
       </li>
-
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -126,7 +128,38 @@
         </div>
       </li>
 
+                    <div class="modal fade" id="myModal" tabIndex="-1">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header"> 
+                            <h4 class="modal-title">Matricule</h4>
+                            <button type="button" class="close" data-dismiss="modal">
+                              ×
+                            </button>
+                         
+                          </div>
+                          <div class="modal-body">
 
+                            <span id="modal-myvalue"></span> <span id="modal-myvar"></span> <span id="modal-bb"></span>
+                         
+                               <form method="POST" action="#">
+                              <input class="form-control" type="text" name="matricule" value="">
+                              <input type="hidden" name="_method" value="DELETE">
+                         
+                         
+                          </div>
+                          <div class="modal-footer">
+                           
+                              <button type="button" class="btn btn-danger"
+                                      data-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-times-circle"></i> Valider
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
         </ul>
         <ul class="navbar-nav ml-auto nav-flex-icons">
@@ -171,6 +204,38 @@
       </div>
     </nav>
     <!--/.Navbar -->
+
+                      <div class="modal fade" id="myMod" tabIndex="-1">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header"> 
+                            <h4 class="modal-title">Matricule</h4>
+                            <button type="button" class="close" data-dismiss="modal">
+                              ×
+                            </button>
+                         
+                          </div>
+                          <div class="modal-body">
+
+                     
+                              <form method="POST" action="#">
+                              <input class="form-control" type="text" name="matricule" value="">
+                              <input type="hidden" name="_method" value="DELETE">
+                         
+                         
+                          </div>
+                          <div class="modal-footer">
+                           
+                              <button type="button" class="btn btn-danger"
+                                      data-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-times-circle"></i> Valider
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
 @endif
 
