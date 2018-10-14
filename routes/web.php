@@ -326,6 +326,13 @@ Route::get('/enseignant/module/{id}', [
     'as'   => 'enseignant.storeModule'
 ]);
 
+Route::get('/enseignant/rechercheModuleEnseignant', [
+
+    'uses' => 'enseignantController@rechercheModuleEnseignant',
+
+    'as'   => 'enseignant.rechercheModuleEnseignant'
+]);
+
 
 
 

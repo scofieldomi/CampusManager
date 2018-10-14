@@ -79,21 +79,21 @@ class noteController extends Controller
  }
 
 
- public function getStudentPagination(Request $request){
+//  public function getStudentPagination(Request $request){
 
-     if($request->ajax()){
+//      if($request->ajax()){
 
-         $annee = $request->annee ;
+//          $annee = $request->annee ;
 
-         $module_r = Module::where('intitule', '=', $request->mod)->first() ;
-         $module_id = $module_r->id ;
+//          $module_r = Module::where('intitule', '=', $request->mod)->first() ;
+//          $module_id = $module_r->id ;
         
-         $etudiant = $this->data($module_id) ;
+//          $etudiant = $this->data($module_id) ;
 
 
-         return view('frontEnd.getStudentNoteList', compact('etudiant','annee','i','compte'))->render() ;
-  }
-}
+//          return view('frontEnd.getStudentNoteList', compact('etudiant','annee','i','compte'))->render() ;
+//   }
+// }
  
   public function data($mode)
     {

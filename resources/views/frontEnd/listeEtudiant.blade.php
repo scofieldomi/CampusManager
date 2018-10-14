@@ -88,7 +88,7 @@ CampusManager
 
             <div class="col-sm-4 py-3">
                 <a href="#" class="btn btn-success btn-block">
-                    Rechercher</a>
+                 <i class="fa fa-search"></i>   Rechercher</a>
               </div>
         </div>
     </div>

@@ -45,7 +45,7 @@
 
 
 <button type="submit" class="btn btn-success btn-block">
-                        Valider les notes
+                      <i class="fa fa-chevron-circle-down"></i>  Valider les notes
                     </button>
 
 

@@ -128,7 +128,7 @@ CampusManager
  <div class="row justify-content-center">
               <div class="col-sm-4 py-3">
                 <button type="submit" class="btn btn-success btn-block">
-                    Délibérer </button>
+                <i class="fa fa-graduation-cap"></i> Délibérer </button>
                </div>
 </div>
 

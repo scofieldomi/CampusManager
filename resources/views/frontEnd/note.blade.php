@@ -128,7 +128,7 @@ CampusManager
 
               <div class="col-sm-4 py-3">
                 <button type="submit" class="btn btn-success btn-block">
-                    Rechercher</button>
+                  <i class="fa fa-search"></i>  Rechercher</button>
                </div>
             </form>
         </div>

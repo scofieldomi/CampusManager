@@ -169,6 +169,56 @@ class enseignantController extends Controller
 
     }
 
+
+      public function rechercheModuleEnseignant(Request $request){
+
+    if($request->ajax()){
+
+        $annee = Annee::where('intitule', '=',$request->annee)->first() ;
+        $annee_id = $annee->id ;
+
+        $institut = Institut::where('intitule', '=' ,$request->institut)->first();
+        $institut_id = $institut->id ;
+
+        $departement = Departement::where('intitule', '=' ,$request->departement)->first();
+        $departement_id = $departement->id ;
+
+        $cycle = Cycle::where('intitule', '=' ,$request->cycle)->first();
+        $cycle_id = $cycle->id ;
+
+        $filiere = Filiere::where('intitule', '=',$request->filiere)->first() ;
+        $filiere_id = $filiere->id ;
+
+        $semestre = Semestre::where('intitule', '=',$request->semestre)->first() ;
+        $semestre_id = $semestre->id ;
+
+        $modules = $this->data($institut_id, $departement_id, $cycle_id, $filiere_id, $semestre_id) ;
+
+         if(count($modules) > 0){
+
+            $view = view('frontEnd.getEnseignantModule', compact('modules'))->render() ;
+            return response($view) ;
+        }
+
+    }
+ }
+
+
+   public function data($institut_id, $departement_id, $cycle_id, $filiere_id, $semestre_id)
+    {
+        
+         return $modules = Unite::join('modules', 'unites.id', '=' ,'modules.unite_id')
+                                ->where('unites.cycle_id', '=', $cycle_id)
+                                ->where('unites.institut_id', '=', $institut_id)
+                                ->where('unites.departement_id', '=', $departement_id)
+                                ->where('unites.filiere_id', '=', $filiere_id)
+                                ->where('unites.semestre_id','=',$semestre_id) 
+                                ->select('unites.intitule as uv', 'modules.intitule')
+                                ->OrderBy('uv','asc')
+                                ->get() ; 
+
+    }
+
     /**
      * Display the specified resource.
      *

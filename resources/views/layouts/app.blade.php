@@ -128,39 +128,6 @@
         </div>
       </li>
 
-                    <div class="modal fade" id="myModal" tabIndex="-1">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header"> 
-                            <h4 class="modal-title">Matricule</h4>
-                            <button type="button" class="close" data-dismiss="modal">
-                              ×
-                            </button>
-                         
-                          </div>
-                          <div class="modal-body">
-
-                            <span id="modal-myvalue"></span> <span id="modal-myvar"></span> <span id="modal-bb"></span>
-                         
-                               <form method="POST" action="#">
-                              <input class="form-control" type="text" name="matricule" value="">
-                              <input type="hidden" name="_method" value="DELETE">
-                         
-                         
-                          </div>
-                          <div class="modal-footer">
-                           
-                              <button type="button" class="btn btn-danger"
-                                      data-dismiss="modal">Close</button>
-                              <button type="submit" class="btn btn-primary">
-                                <i class="fa fa-times-circle"></i> Valider
-                              </button>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
         </ul>
         <ul class="navbar-nav ml-auto nav-flex-icons">
           <li class="nav-item">
@@ -227,9 +194,10 @@
                           <div class="modal-footer">
                            
                               <button type="button" class="btn btn-danger"
-                                      data-dismiss="modal">Close</button>
+                                      data-dismiss="modal"><i class="fa fa-times-circle"></i> Close</button>
                               <button type="submit" class="btn btn-primary">
-                                <i class="fa fa-times-circle"></i> Valider
+                                <!-- <i class="fa fa-times-circle"></i> -->
+                                <i class="fa fa-chevron-circle-down"></i> Valider
                               </button>
                             </form>
                           </div>

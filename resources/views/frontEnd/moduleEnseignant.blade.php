@@ -13,7 +13,7 @@ CampusManager
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Gestion des enseignants</a></li>
             <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('enseignant.liste', ['liste'=>'module']) }}">Assigner un module à un enseignants </a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $enseignant->nom }} {{ $enseignant->prenom }}</li>
+            <li class="breadcrumb-item active" aria-current="page"> {{ $enseignant->prenom }} {{ $enseignant->nom }}</li>
           </ol>
         </nav>
 <!-- 
@@ -26,7 +26,7 @@ CampusManager
                  <div class="col-sm-8">
                 <p class="lead">
                     <div class="alert alert-primary" role="alert">
-                      Choisissez les modules enseignés par l'enseignant {{ $enseignant->nom }} {{ $enseignant->prenom }}
+                      Choisissez les modules enseignés par l'enseignant <strong>{{ $enseignant->prenom }} {{ $enseignant->nom }} </strong> 
                     </div>
                 </p>
                   </div>
@@ -34,7 +34,7 @@ CampusManager
       </div>
   
         <hr class="mb-4">
-    <form class="needs-validation" method="get" action="{{ url('/note/rechercheEtudiant') }}" id="saisieNote">
+    <form class="needs-validation" method="get" action="{{ url('/enseignant/rechercheModuleEnseignant') }}" id="moduleEnseignant">
                             
                             {!! csrf_field() !!}
 
@@ -53,7 +53,6 @@ CampusManager
                      @endforeach
                   </select>
                </div>
-
 
               <div class="col-sm-4">
                 <label for="nom">Institut</label>
@@ -106,7 +105,7 @@ CampusManager
 
               <div class="col-sm-4 py-3">
                 <button type="submit" class="btn btn-success btn-block">
-                    Rechercher</button>
+                   <i class="fa fa-search"></i> Rechercher</button>
                </div>
             </form>
         </div>
@@ -137,7 +136,7 @@ CampusManager
 
 <script type="text/javascript">
 
- $('#saisieNote').on('submit', function(e){
+ $('#moduleEnseignant').on('submit', function(e){
   e.preventDefault() ;
   var url = $(this).attr('action') ;
   var data = $(this).serializeArray() ;
@@ -183,7 +182,6 @@ function changeEventHandler(event) {
        })
 
 }
-
 
 
 
